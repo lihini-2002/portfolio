@@ -20,6 +20,41 @@
            SCREEN 1: TITLE
       ══════════════════════════════════════════ -->
       <section id="screen-title" class="screen screen--active">
+        <!-- Floating SVG decorations -->
+        <div class="title-decor" aria-hidden="true">
+          <!-- Clouds -->
+          <svg class="decor decor-cloud cloud-1" viewBox="0 0 64 32">
+            <path fill="#ffffff" stroke="#4A2060" stroke-width="2" d="M14 24h36q8 0 8-7t-8-7q-1-7-9-7t-9 6q-3-3-7-1t-3 6q-7 0-7 7t9 7z"/>
+          </svg>
+          <svg class="decor decor-cloud cloud-2" viewBox="0 0 64 32">
+            <path fill="#FFE3F1" stroke="#4A2060" stroke-width="2" d="M14 24h36q8 0 8-7t-8-7q-1-7-9-7t-9 6q-3-3-7-1t-3 6q-7 0-7 7t9 7z"/>
+          </svg>
+          <svg class="decor decor-cloud cloud-3" viewBox="0 0 64 32">
+            <path fill="#ffffff" stroke="#4A2060" stroke-width="2" d="M14 24h36q8 0 8-7t-8-7q-1-7-9-7t-9 6q-3-3-7-1t-3 6q-7 0-7 7t9 7z"/>
+          </svg>
+
+          <!-- Hearts -->
+          <svg class="decor decor-heart heart-1" viewBox="0 0 32 32">
+            <path fill="#FF4499" stroke="#4A2060" stroke-width="2" d="M16 28 4 16Q-1 10 5 5t11 4q5-9 11-4t1 11z"/>
+          </svg>
+          <svg class="decor decor-heart heart-2" viewBox="0 0 32 32">
+            <path fill="#FF7BB8" stroke="#4A2060" stroke-width="2" d="M16 28 4 16Q-1 10 5 5t11 4q5-9 11-4t1 11z"/>
+          </svg>
+          <svg class="decor decor-heart heart-3" viewBox="0 0 32 32">
+            <path fill="#FFB8D4" stroke="#4A2060" stroke-width="2" d="M16 28 4 16Q-1 10 5 5t11 4q5-9 11-4t1 11z"/>
+          </svg>
+
+          <!-- Stars -->
+          <svg class="decor decor-star star-a" viewBox="0 0 32 32">
+            <path fill="#FFFFFF" stroke="#4A2060" stroke-width="2" d="M16 2l4 9 10 1-7 7 2 10-9-5-9 5 2-10-7-7 10-1z"/>
+          </svg>
+          <svg class="decor decor-star star-b" viewBox="0 0 32 32">
+            <path fill="#E8D4F8" stroke="#4A2060" stroke-width="2" d="M16 2l4 9 10 1-7 7 2 10-9-5-9 5 2-10-7-7 10-1z"/>
+          </svg>
+          <svg class="decor decor-star star-c" viewBox="0 0 32 32">
+            <path fill="#FFFFFF" stroke="#4A2060" stroke-width="2" d="M16 2l4 9 10 1-7 7 2 10-9-5-9 5 2-10-7-7 10-1z"/>
+          </svg>
+        </div>
         <div class="title-sky">
           <div class="title-stars">
             <span class="star">✦</span>
@@ -27,11 +62,23 @@
             <span class="star">✦</span>
           </div>
           <div class="title-logo">
-            <div class="title-line1">GAYATHRI</div>
+            <div class="title-line1">GAYATHRI<span class="title-hearts">
+                <span class="title-heart" style="top:12%; left:8%;">♥</span>
+                <span class="title-heart" style="top:60%; left:18%;">♥</span>
+                <span class="title-heart" style="top:25%; left:30%;">♥</span>
+                <span class="title-heart" style="top:70%; left:44%;">♥</span>
+                <span class="title-heart" style="top:18%; left:55%;">♥</span>
+                <span class="title-heart" style="top:62%; left:68%;">♥</span>
+                <span class="title-heart" style="top:22%; left:80%;">♥</span>
+                <span class="title-heart" style="top:65%; left:90%;">♥</span>
+              </span></div>
             <div class="title-line2">.EXE</div>
           </div>
           <div class="title-subtitle">SOFTWARE ADVENTURER</div>
-          <div class="title-prompt">— PRESS ENTER TO START —</div>
+          <button class="start-btn" type="button">
+            <span class="start-btn-icon">▶</span>
+            <span class="start-btn-label">START GAME</span>
+          </button>
           <div class="title-hint">[ A ] VIEW CHARACTER</div>
         </div>
       </section>
