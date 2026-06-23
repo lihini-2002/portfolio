@@ -15,8 +15,8 @@
 
   --font-pixel: 'Press Start 2P', monospace;
 
-  --game-w: 480px;
-  --game-h: 340px;
+  --game-w: 950px;
+  --game-h: 740px;
   --ground-h: 52px;
   --border: 6px;
 
@@ -259,11 +259,22 @@ button:focus-visible {
 }
 
 /* ═══════════════════════════════════════════════
-   RESPONSIVE SCALE  (viewport-based transform)
+   FIXED SIZE  (zoom / responsive scaling disabled)
+   To change the frame size, edit --game-w / --game-h
+   in the :root block near the top of this file.
+   js/responsive.js scales the whole frame to fit the
+   screen; the values above are the LANDSCAPE design.
 ═══════════════════════════════════════════════ */
-@media (max-width: 520px) {
-  .game-frame { transform: scale(0.75); transform-origin: center center; }
-}
-@media (max-width: 390px) {
-  .game-frame { transform: scale(0.56); transform-origin: center center; }
+
+/* ═══════════════════════════════════════════════
+   PORTRAIT MODE  (mobile-friendly tall layout)
+   On portrait screens, swap to a tall frame at the
+   original authored width so every screen reflows
+   into a phone-shaped console. Edit these to taste.
+═══════════════════════════════════════════════ */
+@media (orientation: portrait) {
+  :root {
+    --game-w: 480px;
+    --game-h: 760px;
+  }
 }
