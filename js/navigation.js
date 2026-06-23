@@ -88,31 +88,30 @@ function goBack() {
    MENU PORTAL SYSTEM
 ═══════════════════════════════════════════════ */
 function renderMenuPortals() {
-  const track = document.getElementById('portal-track');
-  if (!track) return;
+  const list = document.getElementById('menu-list');
+  if (!list) return;
 
-  track.innerHTML = MENU_ITEMS.map((item, i) => `
-    <div class="portal-item${i === 0 ? ' portal-item--active' : ''}"
-         data-index="${i}" data-screen="${item.screen}" role="button" tabindex="0"
+  list.innerHTML = MENU_ITEMS.map((item, i) => `
+    <button class="menu-plate${i === 0 ? ' menu-plate--active' : ''}"
+         data-index="${i}" data-screen="${item.screen}"
          aria-label="${item.label}">
-      <div class="portal-sign">
-        <span class="portal-sign-icon">${item.icon}</span>
-        ${item.label}
-      </div>
-      <div class="portal-post"></div>
-    </div>
+      <span class="rivet rivet--tl"></span>
+      <span class="rivet rivet--tr"></span>
+      <span class="rivet rivet--bl"></span>
+      <span class="rivet rivet--br"></span>
+      <span class="menu-plate-label">
+        <span class="menu-plate-icon">${item.icon}</span>${item.label}
+      </span>
+    </button>
   `).join('');
 
-  track.querySelectorAll('.portal-item').forEach(el => {
+  list.querySelectorAll('.menu-plate').forEach(el => {
     el.addEventListener('click', () => {
       setMenuActive(parseInt(el.dataset.index));
       selectMenuItem();
     });
-    el.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        setMenuActive(parseInt(el.dataset.index));
-        selectMenuItem();
-      }
+    el.addEventListener('mouseenter', () => {
+      setMenuActive(parseInt(el.dataset.index));
     });
   });
 }
@@ -120,18 +119,16 @@ function renderMenuPortals() {
 function setMenuActive(index) {
   _menuIndex = Math.max(0, Math.min(MENU_ITEMS.length - 1, index));
 
-  const track = document.getElementById('portal-track');
-  if (!track) return;
+  const list = document.getElementById('menu-list');
+  if (!list) return;
 
-  track.querySelectorAll('.portal-item').forEach((el, i) => {
-    el.classList.toggle('portal-item--active', i === _menuIndex);
+  const plates = list.querySelectorAll('.menu-plate');
+  plates.forEach((el, i) => {
+    el.classList.toggle('menu-plate--active', i === _menuIndex);
   });
 
-  /* Slide track to centre the active portal */
-  const itemW    = 76 + 20 + 20; // min-width + padding + gap ≈ 116px
-  const viewW    = track.parentElement?.offsetWidth || 480;
-  const offset   = _menuIndex * itemW - (viewW / 2) + (itemW / 2) - 40;
-  track.style.transform = `translateX(${-Math.max(0, offset)}px)`;
+  /* Keep the active plate scrolled into view */
+  plates[_menuIndex]?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
 }
 
 function selectMenuItem() {
@@ -256,8 +253,8 @@ document.addEventListener('keydown', e => {
       break;
 
     case 'screen-menu':
-      if (e.key === 'ArrowLeft')                   setMenuActive(_menuIndex - 1);
-      if (e.key === 'ArrowRight')                  setMenuActive(_menuIndex + 1);
+      if (e.key === 'ArrowUp')                     setMenuActive(_menuIndex - 1);
+      if (e.key === 'ArrowDown')                   setMenuActive(_menuIndex + 1);
       if (e.key === 'Enter' || e.key === ' ')      selectMenuItem();
       if (e.key === 'Escape' || e.key === 'Backspace') goBack();
       if (e.key === 'b' || e.key === 'B')          goBack();
@@ -275,6 +272,8 @@ document.addEventListener('keydown', e => {
 ═══════════════════════════════════════════════ */
 function _wireDpad() {
   const wire = (id, fn) => document.getElementById(id)?.addEventListener('click', fn);
+  wire('dpad-up',    () => setMenuActive(_menuIndex - 1));
+  wire('dpad-down',  () => setMenuActive(_menuIndex + 1));
   wire('dpad-left',  () => setMenuActive(_menuIndex - 1));
   wire('dpad-right', () => setMenuActive(_menuIndex + 1));
   wire('btn-a', () => {

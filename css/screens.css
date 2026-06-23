@@ -88,15 +88,6 @@
 
 @keyframes blink { 50% { opacity: 0; } }
 
-.title-ground {
-  height: var(--ground-h);
-  background: var(--pink-hot);
-  border-top: 4px solid var(--purple-deep);
-  position: relative;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
 /* ═══════════════════════════════════════════════
    SCREEN 2: ABOUT / CHARACTER CARD
 ═══════════════════════════════════════════════ */
@@ -246,16 +237,7 @@
   flex-shrink: 0;
 }
 
-.about-ground {
-  height: var(--ground-h);
-  background: var(--pink-hot);
-  border-top: 4px solid var(--purple-deep);
-  position: relative;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-/* Continue button — sits inside the pink ground strip */
+/* Continue button — floats at the bottom-right of the screen */
 .continue-btn {
   position: absolute;
   bottom: 10px;
@@ -295,133 +277,117 @@
 .hud-center { font-size: 7px; color: var(--white); }
 .hud-right  { font-size: 6px; color: var(--lavender-light); }
 
-/* Sky / portal area */
-.menu-sky {
+/* ─── Stacked game-menu board ──────────────────── */
+.menu-board {
   flex: 1;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Pixel clouds */
-.cloud {
-  position: absolute;
-  background: var(--white);
-  border: 2px solid var(--purple-deep);
-  opacity: 0.85;
-}
-.cloud::before, .cloud::after {
-  content: '';
-  position: absolute;
-  background: var(--white);
-  border: 2px solid var(--purple-deep);
-}
-
-.cloud--1 {
-  top: 10px; width: 40px; height: 12px; border-radius: 6px;
-  left: 10%;
-  animation: cloudDrift 14s linear infinite;
-}
-.cloud--2 {
-  top: 20px; width: 56px; height: 14px; border-radius: 7px;
-  left: 45%;
-  animation: cloudDrift 18s linear infinite;
-  animation-delay: -6s;
-}
-.cloud--3 {
-  top: 8px; width: 36px; height: 10px; border-radius: 5px;
-  left: 70%;
-  animation: cloudDrift 12s linear infinite;
-  animation-delay: -3s;
-}
-
-@keyframes cloudDrift {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-120%); }
-}
-
-/* Portal track (scrolls horizontally) */
-.portal-viewport {
-  position: absolute;
-  top: 16px; bottom: 0; left: 0; right: 0;
-  overflow: hidden;
-}
-
-.portal-track {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  align-items: flex-end;
-  gap: 20px;
-  padding: 0 40px;
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform;
-}
-
-.portal-item {
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex-shrink: 0;
-  cursor: pointer;
-  gap: 0;
+  gap: 18px;
+  padding: 22px 16px 28px;
 }
 
-.portal-sign {
-  background: var(--cream);
-  border: 3px solid var(--purple-deep);
-  box-shadow: 3px 3px 0 var(--pink-hot);
-  padding: 6px 8px;
-  font-size: 6px;
-  color: var(--purple-deep);
-  text-align: center;
-  min-width: 76px;
-  line-height: 1.8;
-  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+/* Chunky "MENU" title with blocky outline */
+.menu-board-title {
+  font-size: 28px;
+  letter-spacing: 4px;
+  color: var(--cream);
+  text-shadow:
+    3px 0 0 var(--purple-deep),  -3px 0 0 var(--purple-deep),
+    0 3px 0 var(--purple-deep),  0 -3px 0 var(--purple-deep),
+    3px 3px 0 var(--purple-deep), 5px 7px 0 var(--pink-hot);
+  margin-bottom: 4px;
 }
 
-.portal-sign-icon {
-  display: block;
-  font-size: 16px;
-  margin-bottom: 2px;
+.menu-list {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.portal-item--active .portal-sign {
-  background: var(--pink-hot);
-  color: var(--white);
-  box-shadow: 3px 3px 0 var(--purple-deep);
-  animation: portalPulse 0.7s ease-in-out infinite alternate;
-}
-
-@keyframes portalPulse {
-  from { box-shadow: 3px 3px 0 var(--purple-deep); }
-  to   { box-shadow: 3px 3px 0 var(--purple-deep), 0 0 10px var(--pink-hot); }
-}
-
-.portal-post {
-  width: 6px;
-  height: 24px;
-  background: var(--purple-deep);
-}
-
-/* Ground strip */
-.menu-ground {
-  height: var(--ground-h);
-  background: var(--pink-hot);
-  border-top: 4px solid var(--purple-deep);
+/* A single beveled metallic button plate */
+.menu-plate {
   position: relative;
-  overflow: hidden;
-  flex-shrink: 0;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(180deg, var(--lavender-light) 0%, var(--lavender) 100%);
+  border: 3px solid var(--purple-deep);
+  /* light top-left highlight + dark bottom-right edge = pixel bevel */
+  box-shadow:
+    inset 2px 2px 0 var(--white),
+    inset -2px -2px 0 var(--purple-mid),
+    5px 5px 0 rgba(74, 32, 96, 0.4);
+  transition: transform 0.08s, box-shadow 0.08s;
+}
+
+/* Corner rivets */
+.rivet {
+  position: absolute;
+  width: 5px; height: 5px;
+  background: var(--purple-deep);
+  border-radius: 50%;
+  box-shadow: inset -1px -1px 0 rgba(0, 0, 0, 0.4);
+}
+.rivet--tl { top: 5px;  left: 5px;  }
+.rivet--tr { top: 5px;  right: 5px; }
+.rivet--bl { bottom: 5px; left: 5px;  }
+.rivet--br { bottom: 5px; right: 5px; }
+
+/* Recessed inner label panel */
+.menu-plate-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 8px;
+  margin: 0 6px;
+  background: var(--purple-deep);
+  box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.45);
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--pink-light);
+  text-shadow: 1px 1px 0 #000;
+  transition: color 0.12s;
+}
+
+.menu-plate-icon { font-size: 16px; }
+
+/* Hover / selected plate: pressed-in + glowing label */
+.menu-plate:hover,
+.menu-plate--active {
+  transform: translate(2px, 2px);
+  box-shadow:
+    inset 2px 2px 0 var(--white),
+    inset -2px -2px 0 var(--purple-mid),
+    2px 2px 0 rgba(74, 32, 96, 0.4);
+}
+.menu-plate--active .menu-plate-label {
+  color: var(--white);
+  animation: plateGlow 0.8s ease-in-out infinite alternate;
+}
+.menu-plate--active .menu-plate-label::after {
+  content: ' ◀';
+  color: var(--pink-hot);
+}
+
+@keyframes plateGlow {
+  from { text-shadow: 1px 1px 0 #000; }
+  to   { text-shadow: 1px 1px 0 #000, 0 0 8px var(--pink-hot); }
 }
 
 /* Controls area */
 .menu-controls {
-  height: 56px;
+  position: relative;
+  height: 88px;
   background: var(--purple-deep);
   border-top: 2px solid var(--pink-hot);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 0 12px;
   flex-shrink: 0;
 }
@@ -459,6 +425,10 @@
 .dpad-down  { grid-column: 2; grid-row: 3; border-radius: 0 0 3px 3px; }
 
 .ab-buttons {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   gap: 10px;
   align-items: center;
@@ -510,15 +480,6 @@
   min-height: 0;
 }
 .section-content-area::-webkit-scrollbar { display: none; }
-
-.section-ground {
-  height: var(--ground-h);
-  background: var(--pink-hot);
-  border-top: 4px solid var(--purple-deep);
-  position: relative;
-  overflow: hidden;
-  flex-shrink: 0;
-}
 
 /* ─── Content card  (shared by Education/Projects/Awards) ─── */
 .content-card {

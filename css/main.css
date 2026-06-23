@@ -32,7 +32,8 @@
 
 html, body {
   width: 100%; height: 100%;
-  background: var(--purple-deep);
+  /* ── BACKGROUND IMAGE ── change the file below to swap the background ── */
+  background: var(--purple-deep) url('../images/background.jpg') center center / cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -148,38 +149,6 @@ button:focus-visible {
 /* ═══════════════════════════════════════════════
    PIXEL GROUND  (pink floor strip)
 ═══════════════════════════════════════════════ */
-.pixel-ground {
-  height: var(--ground-h);
-  background: var(--pink-hot);
-  border-top: 4px solid var(--purple-deep);
-  position: relative;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-/* Grass-like bumps on top edge */
-.pixel-ground::before {
-  content: '';
-  position: absolute;
-  top: -2px; left: 0;
-  width: 100%; height: 4px;
-  background: repeating-linear-gradient(
-    90deg,
-    var(--pink-medium) 0px,  var(--pink-medium) 8px,
-    transparent        8px,  transparent        12px
-  );
-}
-
-/* ═══════════════════════════════════════════════
-   SPRITE STAGE  (runner container inside ground)
-═══════════════════════════════════════════════ */
-.sprite-stage {
-  position: absolute;
-  bottom: 0; left: 0;
-  width: 100%; height: 100%;
-  overflow: hidden;
-}
-
 /* ═══════════════════════════════════════════════
    PIXEL BOX  (card container)
 ═══════════════════════════════════════════════ */
@@ -228,7 +197,7 @@ button:focus-visible {
 }
 .btn-b:active { transform: translate(2px, 2px); box-shadow: none; }
 
-/* Back button — sits inside the pink ground strip, above sprite runners */
+/* Back button — floats at the bottom-left of the screen */
 .back-btn {
   position: absolute;
   bottom: 10px;
