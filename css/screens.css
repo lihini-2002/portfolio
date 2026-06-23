@@ -12,7 +12,53 @@
   background-size: auto, 26px 26px;
 }
 
+/* ─── Floating SVG decorations ───────────────── */
+.title-decor {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.decor {
+  position: absolute;
+  shape-rendering: crispEdges;
+}
+
+/* Clouds drift sideways */
+.decor-cloud { width: 56px; animation: decor-drift 14s ease-in-out infinite; }
+.cloud-1 { top: 12%; left: 8%;  width: 64px; }
+.cloud-2 { top: 26%; right: 6%; width: 44px; animation-delay: -5s; animation-duration: 18s; }
+.cloud-3 { bottom: 16%; left: 14%; width: 40px; animation-delay: -9s; animation-duration: 20s; opacity: 0.9; }
+
+/* Hearts and stars bob up and down */
+.decor-heart { width: 18px; animation: decor-bob 3s ease-in-out infinite; }
+.heart-1 { top: 18%; right: 16%; width: 22px; }
+.heart-2 { bottom: 24%; right: 12%; animation-delay: -1s; }
+.heart-3 { top: 46%; left: 6%;  width: 14px; animation-delay: -2s; }
+
+.decor-star { width: 16px; animation: decor-twinkle 2.4s ease-in-out infinite; }
+.star-a { top: 10%; right: 28%; }
+.star-b { bottom: 14%; right: 24%; width: 12px; animation-delay: -0.8s; }
+.star-c { top: 34%; left: 18%;  width: 20px; animation-delay: -1.6s; }
+
+@keyframes decor-drift {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(18px); }
+}
+@keyframes decor-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+@keyframes decor-twinkle {
+  0%, 100% { transform: scale(1);    opacity: 1;   }
+  50%      { transform: scale(0.75); opacity: 0.5; }
+}
+
 .title-sky {
+  position: relative;
+  z-index: 1;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -50,35 +96,100 @@
 }
 
 .title-line1 {
-  font-size: 26px;
+  font-size: 55px;
   color: var(--white);
   text-shadow:
     3px  3px 0 var(--purple-deep),
     -2px 0   0 var(--pink-hot),
     0    2px 0 var(--pink-hot);
   letter-spacing: 3px;
+  position: relative;
+}
+
+.title-hearts {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.title-heart {
+  position: absolute;
+  font-size: 12px;
+  color: var(--pink-hot);
+  text-shadow: 1px 1px 0 var(--purple-deep);
+  animation: heartbeat 1.4s ease-in-out infinite;
+}
+
+.title-heart:nth-child(even) { animation-delay: 0.7s; }
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.35); }
 }
 
 .title-line2 {
-  font-size: 18px;
+  font-size: 30px;
   color: var(--pink-hot);
   text-shadow: 2px 2px 0 var(--purple-deep);
   letter-spacing: 2px;
 }
 
 .title-subtitle {
-  font-size: 6px;
+  font-size: 13px;
   color: var(--lavender-light);
   text-shadow: 1px 1px 0 var(--purple-deep);
   letter-spacing: 2px;
 }
 
 .title-prompt {
-  font-size: 7px;
+  font-size: 13px;
   color: var(--white);
   text-shadow: 1px 1px 0 var(--purple-deep);
   animation: blink 1s step-end infinite;
   margin-top: 4px;
+}
+
+/* ─── START GAME button ──────────────────────── */
+.start-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 6px 0;
+  padding: 12px 22px;
+  font-family: inherit;
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: var(--white);
+  background: linear-gradient(180deg, var(--pink-medium) 0%, var(--pink-hot) 100%);
+  border: none;
+  cursor: pointer;
+  text-shadow: 2px 2px 0 var(--purple-deep);
+  /* chunky pixel border via stacked box-shadows */
+  box-shadow:
+    0 0 0 3px var(--pink-light),
+    0 0 0 6px var(--purple-deep),
+    inset 0 3px 0 rgba(255, 255, 255, 0.45),
+    6px 6px 0 0 rgba(74, 32, 96, 0.4);
+  animation: start-btn-pulse 1.4s ease-in-out infinite;
+}
+
+.start-btn-icon { font-size: 12px; }
+
+.start-btn:hover {
+  background: linear-gradient(180deg, var(--pink-light) 0%, var(--pink-medium) 100%);
+}
+
+.start-btn:active {
+  transform: translate(3px, 3px);
+  box-shadow:
+    0 0 0 3px var(--pink-light),
+    0 0 0 6px var(--purple-deep),
+    inset 0 3px 0 rgba(255, 255, 255, 0.45);
+}
+
+@keyframes start-btn-pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.04); }
 }
 
 .title-hint {
