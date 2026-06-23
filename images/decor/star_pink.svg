@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Pink pixel sparkle">
+  <title>Pink Pixel Sparkle</title>
+  <rect width="64" height="64" fill="none"/>
+  <g shape-rendering="crispEdges">
+    <rect x="28" y="4" width="8" height="16" fill="#ff5fb7"/>
+    <rect x="28" y="44" width="8" height="16" fill="#ff5fb7"/>
+    <rect x="4" y="28" width="16" height="8" fill="#ff5fb7"/>
+    <rect x="44" y="28" width="16" height="8" fill="#ff5fb7"/>
+    <rect x="20" y="20" width="24" height="24" fill="#ff8fd0"/>
+    <rect x="28" y="28" width="8" height="8" fill="#fff1fa"/>
+    <rect x="20" y="12" width="8" height="8" fill="#ffd0ed"/>
+    <rect x="36" y="44" width="8" height="8" fill="#b856c8"/>
+  </g>
+</svg>

@@ -2,12 +2,14 @@
    SCREEN 1: TITLE
 ═══════════════════════════════════════════════ */
 #screen-title {
-  background-color: var(--lavender);
-  background-image: repeating-conic-gradient(
-    var(--lavender) 0% 25%,
-    var(--lavender-light) 0% 50%
-  );
-  background-size: 16px 16px;
+  background-color: #e3c8f0;
+  background-image:
+    linear-gradient(180deg, rgba(249,190,221,0.45) 0%, rgba(188,176,241,0.45) 100%),
+    repeating-conic-gradient(
+      rgba(255,255,255,0.40) 0% 25%,
+      rgba(196,168,224,0.40) 0% 50%
+    );
+  background-size: auto, 26px 26px;
 }
 
 .title-sky {
@@ -92,54 +94,81 @@
    SCREEN 2: ABOUT / CHARACTER CARD
 ═══════════════════════════════════════════════ */
 #screen-about {
-  background-color: var(--lavender);
-  background-image: repeating-conic-gradient(
-    var(--lavender) 0% 25%,
-    var(--lavender-light) 0% 50%
-  );
-  background-size: 16px 16px;
+  background-color: #e3c8f0;
+  /* Soft pastel checkerboard: low-contrast translucent tiles over a gentle
+     pink→lavender gradient, so the square edges read softly (not hard pixels) */
+  background-image:
+    linear-gradient(180deg, rgba(249,190,221,0.45) 0%, rgba(188,176,241,0.45) 100%),
+    repeating-conic-gradient(
+      rgba(255,255,255,0.40) 0% 25%,
+      rgba(196,168,224,0.40) 0% 50%
+    );
+  background-size: auto, 26px 26px;
+  padding: 8px;
 }
 
 .about-header {
-  height: 22px;
-  background: var(--purple-deep);
-  border-bottom: 2px solid var(--pink-hot);
+  height: 45px;
+  background: #290A67 url('../images/decor/pixel_purple.svg') 0 0 / 24px 24px;
+  image-rendering: pixelated;
+  border: 2px solid var(--pink-hot);
+  border-radius: 12px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.25), 0 2px 0 rgba(74,32,96,0.45);
   display: flex;
   align-items: center;
-  padding: 0 8px;
+  gap: 5px;
+  padding: 0 10px;
   flex-shrink: 0;
 }
+.about-header::before { content: '♥'; color: var(--pink-hot); font-size: 20px; }
+.about-header::after  { content: '✦'; color: var(--pink-light); font-size: 20px; margin-left: 20px; }
 
 .about-header-text {
-  font-size: 7px;
+  font-size: 10px;
   color: var(--white);
+  text-shadow: 1px 1px 0 var(--purple-deep);
+  letter-spacing: 1px;
 }
 
-.about-layout {
+/* "Meet the artist" sheet: sprite figure + info stack */
+.about-sheet {
   flex: 1;
   display: flex;
-  gap: 8px;
-  padding: 8px;
-  overflow: hidden;
+  gap: 10px;
+  padding: 10px 10px 44px;
+  overflow-y: auto;
+  scrollbar-width: none;
   min-height: 0;
 }
+.about-sheet::-webkit-scrollbar { display: none; }
 
 /* Left panel: animated character */
 .about-character-panel {
-  width: 110px;
+  width: 156px;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
+  position: sticky;
+  top: 0;
 }
 
 .char-frame {
-  width: 96px;
-  height: 110px;
-  background: var(--cream);
-  border: 3px solid var(--purple-deep);
-  box-shadow: 3px 3px 0 var(--pink-hot);
+  width: 150px;
+  height: 180px;
+  /* Soft checkerboard, pink version (matches the screen background style) */
+  background-color: #ffd9ec;
+  background-image:
+    linear-gradient(180deg, rgba(255,200,225,0.45) 0%, rgba(255,160,205,0.45) 100%),
+    repeating-conic-gradient(
+      rgba(255,255,255,0.55) 0% 25%,
+      rgba(255,150,200,0.45) 0% 50%
+    );
+  background-size: auto, 22px 22px;
+  border: 3px solid var(--pink-hot);
+  border-radius: 14px;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.5), 0 3px 0 rgba(74,32,96,0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -147,42 +176,224 @@
   position: relative;
 }
 
+/* Sparkle/flower doodles around the figure (reference style) */
+.char-doodle {
+  position: absolute;
+  font-size: 9px;
+  color: var(--pink-hot);
+  text-shadow: 1px 1px 0 var(--purple-deep);
+  animation: starPulse 1.8s ease-in-out infinite;
+  z-index: 3;
+}
+.char-doodle--1 { top: 4px; right: 5px; }
+.char-doodle--2 { bottom: 5px; left: 5px; animation-delay: 0.7s; }
+
 .char-name-tag {
-  font-size: 6px;
-  color: var(--purple-deep);
-  background: var(--pink-light);
-  border: 2px solid var(--purple-deep);
-  padding: 2px 4px;
+  font-size: 7px;
+  color: var(--white);
+  background: linear-gradient(180deg, var(--pink-medium) 0%, var(--pink-hot) 100%);
+  border: 2px solid #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 0 rgba(74,32,96,0.45);
+  text-shadow: 1px 1px 0 var(--purple-deep);
+  padding: 4px 10px;
   text-align: center;
+  letter-spacing: 1px;
 }
 
 .char-level {
   font-size: 6px;
-  color: var(--white);
-  background: var(--pink-hot);
-  border: 2px solid var(--purple-deep);
-  padding: 2px 6px;
+  color: var(--pink-light);
+  background: linear-gradient(180deg, #5a2d7a 0%, #3d1a5c 100%);
+  border: 2px solid var(--pink-hot);
+  border-radius: 10px;
+  padding: 3px 12px;
 }
 
-/* Right panel: stats */
-.about-stats-panel {
+/* Right panel: artist-sheet info stack */
+.about-info {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  overflow-y: auto;
-  scrollbar-width: none;
+  gap: 8px;
   min-width: 0;
 }
 
-.stat-card {
-  background: var(--cream);
-  border: 3px solid var(--purple-deep);
-  box-shadow: 3px 3px 0 var(--pink-hot);
-  padding: 6px;
+/* The two big rows grow to fill leftover vertical space so the
+   sheet spans the whole frame (name banner + tags stay natural height) */
+.likes-dislikes { flex: 1 1 0; min-height: 0; }
+.about-bottom   { flex: 1 1 0; min-height: 0; }
+
+/* ── Hand-lettered name banner ── */
+.about-nametag {
+  background: #290A67 url('../images/decor/pixel_purple.svg') 0 0 / 24px 24px;
+  image-rendering: pixelated;
+  border: 3px solid var(--pink-hot);
+  border-radius: 14px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.25), 0 3px 0 rgba(74,32,96,0.45);
+  padding: 16px 20px;
   display: flex;
   flex-direction: column;
   gap: 5px;
+}
+.about-nametag-name {
+  font-size: 13px;
+  color: var(--white);
+  text-shadow: 2px 2px 0 var(--pink-hot);
+  letter-spacing: 1px;
+}
+.about-pronoun {
+  font-size: 12px;
+  color: var(--pink-medium);
+  text-shadow: none;
+  letter-spacing: 0;
+}
+.about-nametag-class {
+  font-size: 12px;
+  color: var(--pink-light);
+}
+
+/* ── Fun-fact tag chips ── */
+.about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.about-tags .tag {
+  font-size: 6px;
+  padding: 4px 8px;
+  border: 2px solid var(--purple-deep);
+  border-radius: 999px;
+  box-shadow: 0 2px 0 rgba(74,32,96,0.3);
+}
+.about-tags .tag--hot {
+  background: linear-gradient(180deg, var(--pink-medium), var(--pink-hot));
+  border-color: #fff;
+}
+.about-tags .tag--dark {
+  background: #290A67 url('../images/decor/pixel_purple.svg') 0 0 / 24px 24px;
+  image-rendering: pixelated;
+  border-color: var(--pink-hot);
+}
+
+/* ── Likes / Dislikes columns ── */
+.likes-dislikes {
+  display: flex;
+  gap: 10px;
+}
+.ld-card {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(255,255,255,0.6), transparent 55%),
+    linear-gradient(180deg, #fdeef9 0%, #f1d8f5 100%);
+  border: 3px solid var(--pink-hot);
+  border-radius: 14px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 3px 0 rgba(74,32,96,0.35);
+  padding: 8px 10px;
+}
+.dislike-list { border-color: var(--lavender); }
+
+/* Crop the cloud at the Likes box border (clips to the rounded corner) */
+.like-list { overflow: hidden; }
+
+/* Soft cloud peeking from the bottom-right corner */
+.decor-cloud {
+  position: absolute;
+  right: -15px;
+  bottom: -20px;
+  width: 220px;
+  height: auto;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Three stars of different sizes hovering above the cloud */
+.decor-star {
+  position: absolute;
+  pointer-events: none;
+  z-index: 3;
+  animation: starPulse 1.8s ease-in-out infinite;
+}
+.decor-star--1 { width: 15px; right: 50px; bottom: 36px; animation-delay: 0s;   }
+.decor-star--2 { width: 10px; right: 30px; bottom: 48px; animation-delay: 0.6s; }
+.decor-star--3 { width: 7px;  right: 14px; bottom: 40px; animation-delay: 1.2s; }
+
+.list-title {
+  font-size: 13px;
+  color: var(--pink-hot);
+  margin-bottom: 6px;
+  padding-bottom: 4px;
+  border-bottom: 2px dotted var(--pink-light);
+}
+.dislike-list .list-title { color: var(--purple-mid); }
+
+.ld-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.ld-items li {
+  font-size: 12px;
+  color: var(--purple-deep);
+  line-height: 1.7;
+  padding-left: 11px;
+  position: relative;
+}
+.like-list .ld-items li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  color: var(--pink-hot);
+}
+.dislike-list .ld-items li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  color: var(--purple-mid);
+}
+
+/* ── Stats + bio row ── */
+.about-bottom {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+}
+.about-bottom .stat-card { flex: 1 1 0; min-width: 0; }
+.about-bottom .about-bio-box { flex: 1 1 0; min-width: 0; margin: 0; }
+.about-bottom .stat-card .list-title {
+  border-bottom: 2px dotted var(--purple-mid);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Pink bar-graph icon before the STATS title */
+.title-icon {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+/* Rows grow to fill the box height; bars stay thin and centre, so the
+   leftover row space becomes even spacing between bars */
+.about-bottom .stat-card .stat-row { flex: 1 1 0; min-height: 0; }
+.about-bottom .stat-card .stat-meter { height: 12px; }
+
+.stat-card {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(255,255,255,0.6), transparent 55%),
+    linear-gradient(180deg, #fdeef9 0%, #f1d8f5 100%);
+  border: 3px solid var(--pink-hot);
+  border-radius: 14px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 3px 0 rgba(74,32,96,0.35);
+  padding: 9px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .stat-row {
@@ -192,10 +403,11 @@
 }
 
 .stat-label {
-  font-size: 6px;
-  color: var(--pink-hot);
-  width: 52px;
+  font-size: 10px;
+  color: var(--purple-deep);
+  width: 84px;
   flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .stat-value {
@@ -216,26 +428,52 @@
 
 .stat-meter {
   flex: 1;
-  height: 8px;
+  height: 9px;
   background: var(--pink-light);
   border: 2px solid var(--purple-deep);
+  border-radius: 0;
+  overflow: hidden;
 }
 
 .stat-fill {
   height: 100%;
   width: var(--fill);
   background: linear-gradient(90deg, var(--pink-hot), var(--pink-medium));
+  border-radius: 0;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
 }
 
 .about-bio-box {
-  background: var(--purple-deep);
-  border: 2px solid var(--pink-hot);
+  position: relative;
+  overflow: hidden;
+  background: #290A67 url('../images/decor/pixel_purple.svg') 0 0 / 24px 24px;
+  image-rendering: pixelated;
+  border: 3px solid var(--pink-hot);
+  border-radius: 14px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), 0 3px 0 rgba(74,32,96,0.45);
   color: var(--pink-light);
-  font-size: 6px;
-  padding: 6px;
+  font-size: 12px;
+  padding: 9px 10px;
   line-height: 2;
   flex-shrink: 0;
 }
+.about-bio-box::before {
+  content: '♥ ';
+  color: var(--pink-hot);
+}
+
+/* Scattered heart/star decorations inside the bio box */
+.bio-decor {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.9;
+  animation: starPulse 2.2s ease-in-out infinite;
+}
+.bio-decor--1 { width: 16px; top: 8px;    right: 10px; animation-delay: 0s;   }
+.bio-decor--2 { width: 10px; top: 6px;    right: 34px; animation-delay: 0.5s; }
+.bio-decor--3 { width: 12px; bottom: 8px; right: 12px; animation-delay: 1s;   }
+.bio-decor--4 { width: 9px;  bottom: 12px; right: 36px; animation-delay: 1.5s; }
 
 /* Continue button — floats at the bottom-right of the screen */
 .continue-btn {
@@ -249,16 +487,55 @@
   z-index: 20;
 }
 
+/* ── Pill BACK / NEXT buttons (this screen only) ── */
+#screen-about .back-btn,
+#screen-about .continue-btn {
+  bottom: 12px;
+  height: 24px;
+  padding: 0 14px;
+  font-size: 7px;
+  border-radius: 999px;
+  border: 2px solid var(--pink-hot);
+  letter-spacing: 1px;
+  box-shadow: 0 3px 0 rgba(74,32,96,0.45);
+}
+#screen-about .back-btn {
+  left: 12px;
+  background: linear-gradient(180deg, #5a2d7a 0%, #3d1a5c 100%);
+  color: var(--pink-light);
+}
+#screen-about .continue-btn {
+  right: 12px;
+  background: linear-gradient(180deg, var(--pink-medium) 0%, var(--pink-hot) 100%);
+  color: var(--white);
+  border-color: #fff;
+  text-shadow: 1px 1px 0 var(--purple-deep);
+}
+#screen-about .back-btn:active,
+#screen-about .continue-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 rgba(74,32,96,0.45);
+}
+
+/* Portrait: stack the artist sheet into a single column */
+@media (orientation: portrait) {
+  .about-sheet { flex-direction: column; align-items: center; }
+  .about-character-panel { position: static; width: 100%; }
+  .about-info { width: 100%; }
+}
+
 /* ═══════════════════════════════════════════════
    SCREEN 3: MAIN MENU (WORLD SELECT)
 ═══════════════════════════════════════════════ */
 #screen-menu {
-  background-color: var(--lavender);
-  background-image: repeating-conic-gradient(
-    var(--lavender) 0% 25%,
-    var(--lavender-light) 0% 50%
-  );
-  background-size: 16px 16px;
+  background-color: #e3c8f0;
+  background-image:
+    linear-gradient(180deg, rgba(249,190,221,0.45) 0%, rgba(188,176,241,0.45) 100%),
+    repeating-conic-gradient(
+      rgba(255,255,255,0.40) 0% 25%,
+      rgba(196,168,224,0.40) 0% 50%
+    );
+  background-size: auto, 26px 26px;
 }
 
 /* HUD bar */
@@ -438,12 +715,14 @@
    SECTION SCREENS  (Education / Projects / etc.)
 ═══════════════════════════════════════════════ */
 .screen--section {
-  background-color: var(--lavender);
-  background-image: repeating-conic-gradient(
-    var(--lavender) 0% 25%,
-    var(--lavender-light) 0% 50%
-  );
-  background-size: 16px 16px;
+  background-color: #e3c8f0;
+  background-image:
+    linear-gradient(180deg, rgba(249,190,221,0.45) 0%, rgba(188,176,241,0.45) 100%),
+    repeating-conic-gradient(
+      rgba(255,255,255,0.40) 0% 25%,
+      rgba(196,168,224,0.40) 0% 50%
+    );
+  background-size: auto, 26px 26px;
 }
 
 .section-header {

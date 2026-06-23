@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 110" role="img" aria-label="Soft pink star">
+  <defs>
+    <linearGradient id="pinkStar" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffe2f3"/>
+      <stop offset="45%" stop-color="#ff78c8"/>
+      <stop offset="100%" stop-color="#a85bd0"/>
+    </linearGradient>
+    <filter id="pinkGlow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <path filter="url(#pinkGlow)" d="M55 6c7 30 19 42 49 49-30 7-42 19-49 49-7-30-19-42-49-49 30-7 42-19 49-49z" fill="url(#pinkStar)"/>
+  <circle cx="55" cy="55" r="7" fill="#fff4fb" opacity="0.85"/>
+</svg>

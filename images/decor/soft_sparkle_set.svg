@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 140" role="img" aria-label="Soft sparkle set">
+  <defs>
+    <linearGradient id="sparkleGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="50%" stop-color="#ff9ad7"/>
+      <stop offset="100%" stop-color="#9b78ff"/>
+    </linearGradient>
+    <filter id="sparkleGlow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <g filter="url(#sparkleGlow)" fill="url(#sparkleGrad)">
+    <path d="M42 8c5 22 13 30 35 35-22 5-30 13-35 35-5-22-13-30-35-35 22-5 30-13 35-35z"/>
+    <path d="M154 22c4 16 10 22 26 26-16 4-22 10-26 26-4-16-10-22-26-26 16-4 22-10 26-26z"/>
+    <path d="M105 82c4 19 12 27 31 31-19 4-27 12-31 31-4-19-12-27-31-31 19-4 27-12 31-31z"/>
+    <circle cx="190" cy="96" r="5"/>
+    <circle cx="75" cy="104" r="4"/>
+    <circle cx="197" cy="33" r="3"/>
+  </g>
+</svg>

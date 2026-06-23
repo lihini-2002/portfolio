@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 80" role="img" aria-label="Pink pixel cloud">
+  <title>Pink Pixel Cloud</title>
+  <rect width="160" height="80" fill="none"/>
+  <g shape-rendering="crispEdges">
+    <rect x="32" y="40" width="16" height="16" fill="#f6a6da"/>
+    <rect x="48" y="24" width="16" height="16" fill="#f6a6da"/>
+    <rect x="64" y="16" width="32" height="16" fill="#f6a6da"/>
+    <rect x="96" y="24" width="16" height="16" fill="#f6a6da"/>
+    <rect x="112" y="40" width="16" height="16" fill="#f6a6da"/>
+    <rect x="48" y="40" width="64" height="16" fill="#f6a6da"/>
+    <rect x="24" y="56" width="112" height="16" fill="#f6a6da"/>
+
+    <rect x="48" y="24" width="16" height="8" fill="#ffd6ef"/>
+    <rect x="64" y="16" width="32" height="8" fill="#ffd6ef"/>
+    <rect x="40" y="40" width="48" height="8" fill="#ffd6ef"/>
+    <rect x="32" y="56" width="72" height="8" fill="#ffd6ef"/>
+
+    <rect x="112" y="48" width="16" height="8" fill="#d47bc6"/>
+    <rect x="88" y="56" width="48" height="8" fill="#d47bc6"/>
+    <rect x="24" y="72" width="112" height="8" fill="#9c5bb8"/>
+
+    <rect x="24" y="56" width="8" height="8" fill="#7b3f9e"/>
+    <rect x="136" y="64" width="8" height="8" fill="#7b3f9e"/>
+    <rect x="40" y="32" width="8" height="8" fill="#7b3f9e"/>
+    <rect x="104" y="32" width="8" height="8" fill="#7b3f9e"/>
+  </g>
+</svg>
