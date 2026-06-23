@@ -79,7 +79,10 @@
   /* Override position for centred display, not running */
   position: static;
   bottom: auto;
-  /* Scale down a little to fit 96×110 frame */
-  transform: scale(0.85);
-  transform-origin: bottom center;
+  /* Show the sprite's original colours (no pink tint) */
+  filter: none;
+  /* Bigger character — keep this in step with .char-frame size in screens.css.
+     Scaling from the centre keeps it inside the frame instead of spilling up. */
+  transform: scale(1.6);
+  transform-origin: center;
 }

@@ -43,52 +43,100 @@
         <div class="about-header">
           <span class="about-header-text">CHARACTER SELECT</span>
         </div>
-        <div class="about-layout">
+        <div class="about-sheet">
+          <!-- Left: animated sprite figure -->
           <div class="about-character-panel">
             <div class="char-frame">
               <div id="about-sprite" class="sprite sprite--adventurer-idle"></div>
+              <span class="char-doodle char-doodle--1" aria-hidden="true">✦</span>
+              <span class="char-doodle char-doodle--2" aria-hidden="true">✿</span>
             </div>
             <div class="char-name-tag">ADVENTURER</div>
             <div class="char-level">LVL 22</div>
           </div>
-          <div class="about-stats-panel">
-            <div class="stat-card">
-              <div class="stat-row">
-                <span class="stat-label">NAME</span>
-                <span class="stat-value">GAYATHRI H.</span>
+
+          <!-- Right: artist-sheet info stack -->
+          <div class="about-info">
+
+            <!-- Name banner -->
+            <div class="about-nametag">
+              <span class="about-nametag-name">GAYATHRI H. <span class="about-pronoun">she/her</span></span>
+              <span class="about-nametag-class">✿ CS ENGINEER ✿</span>
+            </div>
+
+            <!-- EDIT: your fun-fact tag chips here -->
+            <div class="about-tags">
+              <span class="tag tag--hot">LVL 22</span>
+              <span class="tag tag--dark">⌂ SRI LANKA</span>
+              <span class="tag">GUILD: UOM</span>
+              <span class="tag">CLASS: SW ENG</span>
+              <span class="tag tag--dark">FOCUS: HCI</span>
+              <span class="tag tag--hot">☕ 99%</span>
+            </div>
+
+            <!-- EDIT: your likes / dislikes here -->
+            <div class="likes-dislikes">
+              <div class="ld-card like-list">
+                <div class="list-title">♥ LIKES</div>
+                <ul class="ld-items">
+                  <li>pixel art</li>
+                  <li>coffee</li>
+                  <li>clean code</li>
+                  <li>side projects</li>
+                </ul>
+                <img class="decor-star decor-star--1" src="images/decor/soft_star_pink.svg" alt="" aria-hidden="true">
+                <img class="decor-star decor-star--2" src="images/decor/soft_star_white.svg" alt="" aria-hidden="true">
+                <img class="decor-star decor-star--3" src="images/decor/soft_star_pink.svg" alt="" aria-hidden="true">
+                <img class="decor-cloud" src="images/decor/soft_cloud_pink.svg" alt="" aria-hidden="true">
               </div>
-              <div class="stat-row">
-                <span class="stat-label">CLASS</span>
-                <span class="stat-value">CS ENGINEER</span>
-              </div>
-              <div class="stat-row">
-                <span class="stat-label">GUILD</span>
-                <span class="stat-value">UOM</span>
-              </div>
-              <div class="stat-divider"></div>
-              <div class="stat-row">
-                <span class="stat-label">CODE</span>
-                <div class="stat-meter"><div class="stat-fill" style="--fill:85%"></div></div>
-              </div>
-              <div class="stat-row">
-                <span class="stat-label">DESIGN</span>
-                <div class="stat-meter"><div class="stat-fill" style="--fill:72%"></div></div>
-              </div>
-              <div class="stat-row">
-                <span class="stat-label">RESEARCH</span>
-                <div class="stat-meter"><div class="stat-fill" style="--fill:78%"></div></div>
-              </div>
-              <div class="stat-row">
-                <span class="stat-label">COFFEE</span>
-                <div class="stat-meter"><div class="stat-fill" style="--fill:99%"></div></div>
+              <div class="ld-card dislike-list">
+                <div class="list-title">✗ DISLIKES</div>
+                <ul class="ld-items">
+                  <li>merge conflicts</li>
+                  <li>tabs &gt; spaces</li>
+                  <li>flaky tests</li>
+                  <li>404 errors</li>
+                </ul>
+                <img class="decor-star decor-star--1" src="images/decor/soft_star_white.svg" alt="" aria-hidden="true">
+                <img class="decor-star decor-star--2" src="images/decor/soft_star_pink.svg" alt="" aria-hidden="true">
+                <img class="decor-star decor-star--3" src="images/decor/soft_star_white.svg" alt="" aria-hidden="true">
+                <img class="decor-cloud" src="images/decor/soft_cloud_purple.svg" alt="" aria-hidden="true">
               </div>
             </div>
-            <div class="about-bio-box">
-              A passionate CS student who builds things,
-              breaks things, then builds them better.
-              Specialising in software engineering &amp;
-              human-computer interaction.
+
+            <!-- Stat meters + bio -->
+            <div class="about-bottom">
+              <div class="stat-card">
+                <div class="list-title"><img class="title-icon" src="images/decor/bar_graph_pink.svg" alt="" aria-hidden="true">STATS</div>
+                <div class="stat-row">
+                  <span class="stat-label">CODE</span>
+                  <div class="stat-meter"><div class="stat-fill" style="--fill:85%"></div></div>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">DESIGN</span>
+                  <div class="stat-meter"><div class="stat-fill" style="--fill:72%"></div></div>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">RESEARCH</span>
+                  <div class="stat-meter"><div class="stat-fill" style="--fill:78%"></div></div>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">COFFEE</span>
+                  <div class="stat-meter"><div class="stat-fill" style="--fill:99%"></div></div>
+                </div>
+              </div>
+              <div class="about-bio-box">
+                A passionate CS student who builds things,
+                breaks things, then builds them better.
+                Specialising in software engineering &amp;
+                human-computer interaction.
+                <img class="bio-decor bio-decor--1" src="images/decor/soft_heart_pink.svg" alt="" aria-hidden="true">
+                <img class="bio-decor bio-decor--2" src="images/decor/soft_star_white.svg" alt="" aria-hidden="true">
+                <img class="bio-decor bio-decor--3" src="images/decor/soft_star_pink.svg" alt="" aria-hidden="true">
+                <img class="bio-decor bio-decor--4" src="images/decor/soft_tiny_heart.svg" alt="" aria-hidden="true">
+              </div>
             </div>
+
           </div>
         </div>
         <button class="btn-b back-btn" data-target="screen-title" aria-label="Back to title">B BACK</button>
