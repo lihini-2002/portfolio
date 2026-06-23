@@ -1,0 +1,85 @@
+/* ═══════════════════════════════════════════════
+   SPRITE BASE
+═══════════════════════════════════════════════ */
+.sprite {
+  position: absolute;
+  bottom: 4px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  /* Keep below content */
+  z-index: 1;
+}
+
+/* ═══════════════════════════════════════════════
+   FEMALE ADVENTURER  —  walk_Right_Down.png
+   Source: 384×64, 8 frames, each 48×64
+   Display at 2×: element 96×128, bg-size 768×128
+═══════════════════════════════════════════════ */
+.sprite--adventurer {
+  width: 96px;
+  height: 128px;
+  background-image: url('../The Female Adventurer - Free/Walk/walk_Right_Down.png');
+  background-size: 768px 128px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  filter: var(--sprite-filter-char);
+}
+
+/* ─── Idle variant  (Idle_Down.png, same sheet size) ─── */
+.sprite--adventurer-idle {
+  width: 96px;
+  height: 128px;
+  background-image: url('../The Female Adventurer - Free/Idle/Idle_Down.png');
+  background-size: 768px 128px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  filter: var(--sprite-filter-char);
+}
+
+/* ─── Mini runner  (1× scale, for background use) ─── */
+.sprite--adventurer-mini {
+  width: 48px;
+  height: 64px;
+  background-image: url('../The Female Adventurer - Free/Walk/walk_Right_Down.png');
+  background-size: 384px 64px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  filter: var(--sprite-filter-char);
+}
+
+/* ═══════════════════════════════════════════════
+   MUSHROOM RUNNER  —  Mushroom-Run.png
+   Source: 640×64, 8 frames, each 80×64
+   Display at 1.5×: element 120×96, bg-size 960×96
+═══════════════════════════════════════════════ */
+.sprite--mushroom {
+  width: 120px;
+  height: 96px;
+  background-image: url('../Forest_Monsters_FREE/Mushroom/Mushroom without VFX/Mushroom-Run.png');
+  background-size: 960px 96px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  filter: var(--sprite-filter-mushroom);
+}
+
+/* ═══════════════════════════════════════════════
+   RUNNER WRAPPER  (handles horizontal scroll)
+   JS sets initial left; rAF moves it leftward;
+   resets when off-screen left.
+═══════════════════════════════════════════════ */
+.sprite-runner {
+  position: absolute;
+  bottom: 0;
+}
+
+/* ═══════════════════════════════════════════════
+   ABOUT SCREEN IDLE  —  centred in .char-frame
+═══════════════════════════════════════════════ */
+.char-frame .sprite--adventurer-idle {
+  /* Override position for centred display, not running */
+  position: static;
+  bottom: auto;
+  /* Scale down a little to fit 96×110 frame */
+  transform: scale(0.85);
+  transform-origin: bottom center;
+}

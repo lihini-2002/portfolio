@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GAYATHRI.EXE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/screens.css">
+  <link rel="stylesheet" href="css/sprites.css">
+</head>
+<body>
+
+  <div class="game-frame">
+    <div class="game-viewport">
+
+      <!-- ══════════════════════════════════════════
+           SCREEN 1: TITLE
+      ══════════════════════════════════════════ -->
+      <section id="screen-title" class="screen screen--active">
+        <div class="title-sky">
+          <div class="title-stars">
+            <span class="star">✦</span>
+            <span class="star">✦</span>
+            <span class="star">✦</span>
+          </div>
+          <div class="title-logo">
+            <div class="title-line1">GAYATHRI</div>
+            <div class="title-line2">.EXE</div>
+          </div>
+          <div class="title-subtitle">SOFTWARE ADVENTURER</div>
+          <div class="title-prompt">— PRESS ENTER TO START —</div>
+          <div class="title-hint">[ A ] VIEW CHARACTER</div>
+        </div>
+        <div class="title-ground">
+          <div class="sprite-stage" id="title-sprite-stage"></div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════
+           SCREEN 2: ABOUT (CHARACTER CARD)
+      ══════════════════════════════════════════ -->
+      <section id="screen-about" class="screen">
+        <div class="about-header">
+          <span class="about-header-text">CHARACTER SELECT</span>
+        </div>
+        <div class="about-layout">
+          <div class="about-character-panel">
+            <div class="char-frame">
+              <div id="about-sprite" class="sprite sprite--adventurer-idle"></div>
+            </div>
+            <div class="char-name-tag">ADVENTURER</div>
+            <div class="char-level">LVL 22</div>
+          </div>
+          <div class="about-stats-panel">
+            <div class="stat-card">
+              <div class="stat-row">
+                <span class="stat-label">NAME</span>
+                <span class="stat-value">GAYATHRI H.</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">CLASS</span>
+                <span class="stat-value">CS ENGINEER</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">GUILD</span>
+                <span class="stat-value">UOM</span>
+              </div>
+              <div class="stat-divider"></div>
+              <div class="stat-row">
+                <span class="stat-label">CODE</span>
+                <div class="stat-meter"><div class="stat-fill" style="--fill:85%"></div></div>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">DESIGN</span>
+                <div class="stat-meter"><div class="stat-fill" style="--fill:72%"></div></div>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">RESEARCH</span>
+                <div class="stat-meter"><div class="stat-fill" style="--fill:78%"></div></div>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">COFFEE</span>
+                <div class="stat-meter"><div class="stat-fill" style="--fill:99%"></div></div>
+              </div>
+            </div>
+            <div class="about-bio-box">
+              A passionate CS student who builds things,
+              breaks things, then builds them better.
+              Specialising in software engineering &amp;
+              human-computer interaction.
+            </div>
+          </div>
+        </div>
+        <div class="about-ground">
+          <div class="sprite-stage" id="about-sprite-stage"></div>
+        </div>
+        <button class="btn-b back-btn" data-target="screen-title" aria-label="Back to title">B BACK</button>
+        <button class="btn-a continue-btn" id="about-continue" aria-label="Continue to menu">A NEXT ▶</button>
+      </section>
+
+      <!-- ══════════════════════════════════════════
+           SCREEN 3: MAIN MENU (WORLD SELECT)
+      ══════════════════════════════════════════ -->
+      <section id="screen-menu" class="screen">
+        <div class="menu-hud">
+          <div class="hud-left">
+            <span class="heart" aria-hidden="true">♥</span>
+            <span class="heart" aria-hidden="true">♥</span>
+            <span class="heart" aria-hidden="true">♥</span>
+          </div>
+          <div class="hud-center">WORLD SELECT</div>
+          <div class="hud-right">HI 999999</div>
+        </div>
+        <div class="menu-sky">
+          <div class="menu-clouds">
+            <div class="cloud cloud--1"></div>
+            <div class="cloud cloud--2"></div>
+            <div class="cloud cloud--3"></div>
+          </div>
+          <div class="portal-viewport">
+            <div class="portal-track" id="portal-track">
+              <!-- Injected by navigation.js -->
+            </div>
+          </div>
+        </div>
+        <div class="menu-ground">
+          <div class="sprite-stage" id="menu-sprite-stage"></div>
+        </div>
+        <div class="menu-controls">
+          <div class="dpad" aria-label="D-pad navigation">
+            <button class="dpad-btn dpad-up"    id="dpad-up"    aria-label="Up">▲</button>
+            <button class="dpad-btn dpad-left"  id="dpad-left"  aria-label="Left">◀</button>
+            <div class="dpad-center"></div>
+            <button class="dpad-btn dpad-right" id="dpad-right" aria-label="Right">▶</button>
+            <button class="dpad-btn dpad-down"  id="dpad-down"  aria-label="Down">▼</button>
+          </div>
+          <div class="ab-buttons">
+            <button class="btn-b" id="btn-b" aria-label="Back">B</button>
+            <button class="btn-a" id="btn-a" aria-label="Select">A</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════
+           SCREEN 4: EDUCATION
+      ══════════════════════════════════════════ -->
+      <section id="screen-education" class="screen screen--section">
+        <div class="section-header" style="--accent: #FF4499;">
+          <span class="section-icon">🏫</span>
+          <h1 class="section-title">EDUCATION</h1>
+        </div>
+        <div class="section-content-area" id="content-education"></div>
+        <div class="section-ground">
+          <div class="sprite-stage" id="education-sprite-stage"></div>
+        </div>
+        <button class="btn-b back-btn" data-target="screen-menu" aria-label="Back to menu">B MENU</button>
+      </section>
+
+      <!-- ══════════════════════════════════════════
+           SCREEN 5: PROJECTS
+      ══════════════════════════════════════════ -->
+      <section id="screen-projects" class="screen screen--section">
+        <div class="section-header" style="--accent: #C4A8E0;">
+          <span class="section-icon">💻</span>
+          <h1 class="section-title">PROJECTS</h1>
+        </div>
+        <div class="section-content-area" id="content-projects"></div>
+        <div class="section-ground">
+          <div class="sprite-stage" id="projects-sprite-stage"></div>
+        </div>
+        <button class="btn-b back-btn" data-target="screen-menu" aria-label="Back to menu">B MENU</button>
+      </section>
+
+      <!-- ══════════════════════════════════════════
+           SCREEN 6: AWARDS
+      ══════════════════════════════════════════ -->
+      <section id="screen-awards" class="screen screen--section">
+        <div class="section-header" style="--accent: #FF7BB8;">
+          <span class="section-icon">🏆</span>
+          <h1 class="section-title">AWARDS</h1>
+        </div>
+        <div class="section-content-area" id="content-awards"></div>
+        <div class="section-ground">
+          <div class="sprite-stage" id="awards-sprite-stage"></div>
+        </div>
+        <button class="btn-b back-btn" data-target="screen-menu" aria-label="Back to menu">B MENU</button>
+      </section>
+
+      <!-- ══════════════════════════════════════════
+           SCREEN 7: SKILLS
+      ══════════════════════════════════════════ -->
+      <section id="screen-skills" class="screen screen--section">
+        <div class="section-header" style="--accent: #88BBDD;">
+          <span class="section-icon">⚡</span>
+          <h1 class="section-title">SKILLS</h1>
+        </div>
+        <div class="section-content-area" id="content-skills"></div>
+        <div class="section-ground">
+          <div class="sprite-stage" id="skills-sprite-stage"></div>
+        </div>
+        <button class="btn-b back-btn" data-target="screen-menu" aria-label="Back to menu">B MENU</button>
+      </section>
+
+      <!-- ══════════════════════════════════════════
+           SCREEN 8: CONTACT
+      ══════════════════════════════════════════ -->
+      <section id="screen-contact" class="screen screen--section">
+        <div class="section-header" style="--accent: #FF4499;">
+          <span class="section-icon">📬</span>
+          <h1 class="section-title">CONTACT</h1>
+        </div>
+        <div class="section-content-area" id="content-contact"></div>
+        <div class="section-ground">
+          <div class="sprite-stage" id="contact-sprite-stage"></div>
+        </div>
+        <button class="btn-b back-btn" data-target="screen-menu" aria-label="Back to menu">B MENU</button>
+      </section>
+
+    </div><!-- /.game-viewport -->
+  </div><!-- /.game-frame -->
+
+  <script src="js/content.js"></script>
+  <script src="js/sprites.js"></script>
+  <script src="js/navigation.js"></script>
+</body>
+</html>
