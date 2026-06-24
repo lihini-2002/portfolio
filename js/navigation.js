@@ -45,6 +45,7 @@ function navigateTo(targetId, direction) {
   const fromInfo = SCREEN_INFO[_current];
   if (fromInfo?.stage) stopScene(fromInfo.stage);
   if (_current === 'screen-about') stopAboutIdle();
+  if (_current === 'screen-education') window.EduGame?.stop();
 
   /* Play exit animation on old screen */
   fromEl.classList.add(exitClass);
@@ -74,6 +75,7 @@ function navigateTo(targetId, direction) {
     if (toInfo?.stage) startScene(toInfo.stage);
     if (targetId === 'screen-about') startAboutIdle();
     if (targetId === 'screen-skills') _animateSkillBars();
+    if (targetId === 'screen-education') _animateEduBars();
 
     history.replaceState(null, '', `#${targetId.replace('screen-', '')}`);
   }, DURATION);
@@ -147,22 +149,73 @@ function renderAllContent() {
   _renderContact();
 }
 
+/* ─── Education Quest (gamified) ─────────────────── */
+const _EQ_TILE = 'images/tiles';
+
 function _renderEducation() {
   const el = document.getElementById('content-education');
   if (!el) return;
-  el.innerHTML = PORTFOLIO.education.map(edu => `
-    <div class="content-card">
-      <div class="content-card__title">${edu.institution}</div>
-      <div class="content-card__body">
-        ${edu.degree}<br>
-        ${edu.period}<br>
-        ${edu.gpa}
-      </div>
-      <div class="content-card__tags">
-        ${edu.highlights.map(h => `<span class="tag">${h}</span>`).join('')}
+  const q = PORTFOLIO.educationQuest;
+  if (!q) return;
+  const goal = q.levels[0] || { title: 'BSc Degree', sub: '', meta: [] };
+
+  el.innerHTML = `
+    <div class="eq-top">
+      <div class="eq-title-block">
+        <h2 class="eq-title">EDUCATION<br>QUEST</h2>
+        <p class="eq-sub">Guide the hero across the level to reach the goal!</p>
+        <div class="eq-hud">
+          <span class="eq-hud__keys">◀ ▶ MOVE&nbsp; ·&nbsp; SPACE / ▲ JUMP</span>
+          <span class="eq-hud__coins"><img src="${_EQ_TILE}/coin.png" alt="coins">×<b id="eq-coincount">0</b></span>
+        </div>
       </div>
     </div>
-  `).join('');
+
+    <div class="eq-path-wrap">
+      <div class="eq-path" id="eq-path">
+        <div class="eq-clouds" aria-hidden="true">
+          <span class="eq-cloud eq-cloud--1"></span>
+          <span class="eq-cloud eq-cloud--2"></span>
+          <span class="eq-cloud eq-cloud--3"></span>
+        </div>
+        <img class="eq-deco eq-deco--tree"  src="${_EQ_TILE}/tree.png"  alt="">
+        <img class="eq-deco eq-deco--pipe"  src="${_EQ_TILE}/pipe_top.png" alt="">
+
+        <div class="eq-world" id="eq-world">
+          <div class="eq-node eq-node--active eq-node--wide eq-node--goal" id="eq-goal">
+            <div class="eq-node__card">
+              <div class="eq-node__flag"><img src="${_EQ_TILE}/flag.png" alt="">GOAL</div>
+              <div class="eq-node__title">${goal.title}</div>
+              ${goal.sub ? `<div class="eq-node__sub">${goal.sub}</div>` : ''}
+              ${goal.meta ? `<div class="eq-node__meta">${goal.meta.map(m => `<span>${m}</span>`).join('')}</div>` : ''}
+            </div>
+          </div>
+          <!-- platforms, coins and player injected by EduGame -->
+        </div>
+
+        <div class="eq-ground" aria-hidden="true"></div>
+
+        <div class="eq-controls" id="eq-controls">
+          <button class="eq-btn" data-act="left"  type="button" aria-label="Move left">◀</button>
+          <button class="eq-btn eq-btn--jump" data-act="jump" type="button" aria-label="Jump">JUMP</button>
+          <button class="eq-btn" data-act="right" type="button" aria-label="Move right">▶</button>
+        </div>
+
+        <div class="eq-win" id="eq-win" hidden>
+          <div class="eq-win__box">
+            <div class="eq-win__title">⭐ LEVEL COMPLETE! ⭐</div>
+            <div class="eq-win__sub">${goal.title}</div>
+            ${goal.meta ? `<div class="eq-win__meta">${goal.sub || ''} · ${goal.meta.join(' · ')}</div>` : ''}
+            <button class="eq-cta" id="eq-replay" type="button">↺ PLAY AGAIN</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function _animateEduBars() {
+  document.getElementById('content-education')?.classList.add('is-in');
 }
 
 function _renderProjects() {

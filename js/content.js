@@ -43,6 +43,42 @@ const PORTFOLIO = {
     },
   ],
 
+  /* ── Education Quest (gamified Education page) ──── */
+  /* Drives the platformer-style Education screen.    */
+  educationQuest: {
+    player: {
+      name:  'GAYATHRI',
+      level: 22,
+      xp:    780,
+      xpMax: 1000,
+      skills: [
+        { label: 'Code',     pct: 82 },
+        { label: 'Design',   pct: 64 },
+        { label: 'Research', pct: 74 },
+        { label: 'HCI',      pct: 55 },
+      ],
+    },
+    /* status: 'done' | 'active' | 'locked' | 'boss' */
+    levels: [
+      {
+        title:  'BSc Computer Science & Engineering',
+        sub:    'University of Moratuwa',
+        meta:   ['CGPA 3.94 / 4.0', 'Expected May 2027'],
+        status: 'active',
+      },
+    ],
+    achievements: [
+      { icon: '🐞', title: 'Debug Master',    note: 'Fix 100 bugs',        done: true   },
+      { icon: '🎨', title: 'UI Explorer',     note: '3 design challenges', progress: '3/5'  },
+      { icon: '🔬', title: 'Research Rookie', note: 'Read 10 papers',      progress: '6/10' },
+    ],
+    courses: [
+      { title: 'JavaScript Essentials', note: 'Variables, functions & more', pct: 72, xp: 120 },
+      { title: 'Responsive Web Design', note: 'Build for any screen size',   pct: 46, xp: 150 },
+      { title: 'User Research Basics',  note: 'Understand your users',       pct: 35, xp: 100 },
+    ],
+  },
+
   /* ── Projects ────────────────────────────────── */
   projects: [
     {
