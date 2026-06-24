@@ -147,22 +147,166 @@ function renderAllContent() {
   _renderContact();
 }
 
+/* ─── Education Quest log ─────────────────────────
+   Two-column layout: scrollable quest log (left) +
+   stat / badge / summary sidebar (right). Card bodies
+   are placeholders for now — filled in later passes.
+─────────────────────────────────────────────────── */
 function _renderEducation() {
   const el = document.getElementById('content-education');
   if (!el) return;
-  el.innerHTML = PORTFOLIO.education.map(edu => `
-    <div class="content-card">
-      <div class="content-card__title">${edu.institution}</div>
-      <div class="content-card__body">
-        ${edu.degree}<br>
-        ${edu.period}<br>
-        ${edu.gpa}
+
+  const eq = PORTFOLIO.educationQuest;
+
+  el.innerHTML = `
+    <div class="eduquest">
+      <section class="eq-quest-log">
+        <div class="eq-levels">
+          ${eq.levels.slice().reverse().map(_eqLevelCard).join('')}
+        </div>
+      </section>
+      <aside class="eq-sidebar">
+        ${_eqPlayerCard(eq.player)}
+        ${_eqBadgeCard(eq.badges)}
+        ${_eqSummaryCard(eq.summary)}
+      </aside>
+    </div>
+  `;
+}
+
+function _eqLevelCard(lv) {
+  const num = String(lv.level).padStart(2, '0');
+
+  const EQ_ICONS = 'images/education-icons-smooth/';
+
+  /* Each meta line becomes a row; a leading 📅 → calendar
+     icon, everything else → a pink diamond marker. */
+  const meta = (lv.meta || [])
+    .map(m => {
+      let icon = 'diamond_marker.svg';
+      let text = m;
+      if (m.startsWith('📅')) {
+        icon = 'calendar.svg';
+        text = m.replace(/^📅\s*/, '');
+      }
+      return `<div class="eq-meta-item">
+        <img class="eq-meta-icon" src="${EQ_ICONS}${icon}" alt="">
+        <span>${text}</span>
+      </div>`;
+    })
+    .join('');
+
+  const chips = lv.chips?.length ? `
+    <div class="eq-level-chips">
+      ${lv.chips.map(c => `
+        <span class="eq-chip">
+          <img class="eq-chip-icon" src="${EQ_ICONS}${c.icon}" alt="">${c.label}
+        </span>`).join('')}
+    </div>` : '';
+
+  const courses = lv.courses?.length ? `
+    <div class="eq-courses">
+      <div class="eq-courses-label">COURSEWORK UNLOCKED ✦</div>
+      <div class="eq-courses-grid">
+        ${lv.courses.map(c => `<span class="eq-course">${c}</span>`).join('')}
       </div>
-      <div class="content-card__tags">
-        ${edu.highlights.map(h => `<span class="tag">${h}</span>`).join('')}
+    </div>` : '';
+
+  const transcript = lv.transcript ? `
+    <div class="eq-level-actions">
+      <a class="eq-transcript-btn" href="${lv.transcript}" target="_blank" rel="noopener">
+        <img class="eq-btn-icon" src="${EQ_ICONS}certificate_scroll.svg" alt="">VIEW TRANSCRIPT
+      </a>
+    </div>` : '';
+
+  return `
+    <div class="eq-tl-row eq-tl-row--${lv.status}">
+      <div class="eq-tl-rail">
+        <img class="eq-tl-node" src="${EQ_ICONS}diamond_marker.svg" alt="">
       </div>
+      <article class="eq-level eq-level--${lv.status}">
+        <header class="eq-level-top">
+          <span class="eq-level-badge">✦ LEVEL ${num}</span>
+          <span class="eq-level-name">${lv.questName || ''}</span>
+          <span class="eq-level-status">${_eqStatusLabel(lv.status)}</span>
+        </header>
+        <div class="eq-level-content">
+          ${lv.emblemIcon
+            ? `<span class="eq-level-emblem eq-level-emblem--icon"><img src="${EQ_ICONS}${lv.emblemIcon}" alt=""></span>`
+            : (lv.emblem ? `<span class="eq-level-emblem">${lv.emblem}</span>` : '')}
+          <div class="eq-level-main">
+            ${lv.degree ? `<div class="eq-level-degree">${lv.degree}</div>` : ''}
+            ${lv.place  ? `<div class="eq-level-place">${lv.place}</div>` : ''}
+            ${meta ? `<div class="eq-level-meta">${meta}</div>` : ''}
+            ${courses}
+            ${chips}
+            ${transcript}
+          </div>
+        </div>
+      </article>
+    </div>
+  `;
+}
+
+function _eqStatusLabel(status) {
+  if (status === 'active') return '★ ACTIVE QUEST';
+  if (status === 'locked') return '🔒 LOCKED';
+  return '✓ QUEST CLEARED';
+}
+
+function _eqPlayerCard(p) {
+  const stats = (p.stats || []).map(s => `
+    <div class="eq-stat">
+      <div class="eq-stat-top">
+        <span class="eq-stat-label">${s.icon} ${s.label}</span>
+        <span class="eq-stat-value">${s.value}</span>
+      </div>
+      ${s.pct != null ? `
+        <div class="eq-stat-meter">
+          <div class="eq-stat-fill" style="width:${s.pct}%;"></div>
+        </div>` : ''}
     </div>
   `).join('');
+
+  return `
+    <div class="eq-card eq-card--player">
+      <div class="eq-card-title">PLAYER STATS</div>
+      <div class="eq-card-body">${stats}</div>
+    </div>
+  `;
+}
+
+function _eqBadgeCard(badges) {
+  const EQ_ICONS = 'images/education-icons-smooth/';
+  const grid = (badges || []).map(b => `
+    <div class="eq-badge">
+      <div class="eq-badge-box"><img src="${EQ_ICONS}${b.icon}" alt=""></div>
+      <div class="eq-badge-label">${b.label}${b.sub ? `<br>${b.sub}` : ''}</div>
+    </div>`).join('');
+
+  return `
+    <div class="eq-card eq-card--badges">
+      <div class="eq-card-title">BADGE INVENTORY</div>
+      <div class="eq-card-body">
+        <div class="eq-badges">${grid}</div>
+      </div>
+    </div>
+  `;
+}
+
+function _eqSummaryCard(s) {
+  const rows = (s.rows || []).map(r => `
+    <div class="eq-sum-row">
+      <span class="eq-sum-label">${r.label}</span>
+      <span class="eq-sum-value">${r.value}</span>
+    </div>`).join('');
+
+  return `
+    <div class="eq-card eq-card--summary">
+      <div class="eq-card-title">QUEST SUMMARY</div>
+      <div class="eq-card-body">${rows}</div>
+    </div>
+  `;
 }
 
 function _renderProjects() {

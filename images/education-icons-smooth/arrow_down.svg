@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+
+<defs>
+  <style>
+    .s { stroke: #5B2D82; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .t { fill: #5B2D82; font-family: Arial, Helvetica, sans-serif; font-weight: 700; }
+  </style>
+</defs>
+
+
+<rect class="s" fill="#EBD9FF" x="14" y="14" width="36" height="36" rx="10"/>
+<path class="s" d="M32 22V42M23 33L32 42L41 33" stroke="#5B2D82"/>
+
+</svg>

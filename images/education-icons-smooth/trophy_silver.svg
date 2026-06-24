@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+
+<defs>
+  <style>
+    .s { stroke: #5B2D82; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .t { fill: #5B2D82; font-family: Arial, Helvetica, sans-serif; font-weight: 700; }
+  </style>
+</defs>
+
+
+<path class="s" fill="#C9D2E3" d="M22 14H42V22C42 29 37.5 34 32 34C26.5 34 22 29 22 22V14Z"/>
+<path class="s" fill="#C9D2E3" d="M22 18H15C15 25 18.5 28 22 28M42 18H49C49 25 45.5 28 42 28"/>
+<rect class="s" fill="#FFF8FF" x="28" y="34" width="8" height="8" rx="2"/>
+<rect class="s" fill="#89C8FF" x="22" y="42" width="20" height="8" rx="3"/>
+
+</svg>

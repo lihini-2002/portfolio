@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+
+<defs>
+  <style>
+    .s { stroke: #5B2D82; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .t { fill: #5B2D82; font-family: Arial, Helvetica, sans-serif; font-weight: 700; }
+  </style>
+</defs>
+
+
+<path class="s" fill="#FFF8FF" d="M18 10H38L50 22V50C50 52.2 48.2 54 46 54H18C15.8 54 14 52.2 14 50V14C14 11.8 15.8 10 18 10Z"/>
+<path class="s" fill="#EBD9FF" d="M38 10V22H50"/>
+<path class="s" d="M22 28H42M22 34H42M22 40H34"/>
+<circle class="s" fill="#F78ACB" cx="40" cy="40" r="6"/>
+<path class="s" d="M37.5 40L39.5 42L43 37.5"/>
+
+</svg>

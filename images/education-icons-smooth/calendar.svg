@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+
+<defs>
+  <style>
+    .s { stroke: #5B2D82; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .t { fill: #5B2D82; font-family: Arial, Helvetica, sans-serif; font-weight: 700; }
+  </style>
+</defs>
+
+
+<rect class="s" fill="#FFF8FF" x="12" y="14" width="40" height="38" rx="6"/>
+<rect class="s" fill="#F78ACB" x="12" y="14" width="40" height="11" rx="6"/>
+<path class="s" d="M22 10V18M42 10V18M12 25H52"/>
+<circle fill="#5B2D82" cx="24" cy="33" r="2"/>
+<circle fill="#5B2D82" cx="32" cy="33" r="2"/>
+<circle fill="#5B2D82" cx="40" cy="33" r="2"/>
+<circle fill="#5B2D82" cx="24" cy="41" r="2"/>
+<circle fill="#5B2D82" cx="32" cy="41" r="2"/>
+<rect class="s" fill="#F5C04A" x="37" y="37" width="7" height="7" rx="2"/>
+
+</svg>

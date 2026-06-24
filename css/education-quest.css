@@ -1,0 +1,453 @@
+/* ═══════════════════════════════════════════════
+   EDUCATION QUEST  —  quest-log layout
+   Everything scoped under .eduquest (+ the
+   .eduquest-area host) so it can't leak into other
+   screens. Matches the site's pink/purple theme.
+═══════════════════════════════════════════════ */
+
+/* Host: opt the education content area out of the
+   default flex-wrap / scroll-everything behaviour.
+   The frame stays put; only the quest log scrolls. */
+.eduquest-area {
+  display: block;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  padding: 8px;
+}
+
+/* Center the top header bar title for this screen */
+#screen-education .section-header { justify-content: center; }
+
+.eduquest {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1.75fr 1fr;
+  gap: 8px;
+  min-height: 0;
+}
+
+/* ─── Left column: scrollable quest log ───────── */
+.eq-quest-log {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* The only scroll container — future levels just
+   extend this and scroll within the frame. */
+.eq-levels {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding: 2px 6px 8px 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.eq-levels::-webkit-scrollbar { display: none; }
+
+/* ─── Timeline rail (dotted line + diamond nodes) ── */
+.eq-tl-row {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+  flex-shrink: 0;
+}
+
+.eq-tl-rail {
+  position: relative;
+  flex-shrink: 0;
+  width: 34px;
+}
+
+/* Dotted vertical connector — extends 10px past the card
+   bottom to bridge the gap to the next row's line. */
+.eq-tl-rail::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  bottom: -10px;
+  border-left: 2px dotted var(--purple-mid);
+}
+.eq-tl-row:first-child .eq-tl-rail::before { top: 24px; }
+.eq-tl-row:last-child  .eq-tl-rail::before { bottom: auto; height: 24px; }
+
+/* Diamond node — pinned near each card's header */
+.eq-tl-node {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 24px;
+  z-index: 1;
+}
+
+/* Active (newest) node: pink + glow, and a pink connector */
+.eq-tl-row--active .eq-tl-rail::before { border-color: var(--pink-hot); }
+.eq-tl-row--active .eq-tl-node {
+  width: 28px;
+  height: 28px;
+  top: 10px;
+  filter: hue-rotate(35deg) saturate(1.6) brightness(1.05)
+          drop-shadow(0 0 4px rgba(255, 68, 153, 0.7));
+}
+
+/* ─── Level card ──────────────────────────────── */
+.eq-level {
+  flex: 1;
+  min-width: 0;
+  background: var(--cream);
+  border: 3px solid var(--pink-hot);
+  border-radius: 16px;
+  box-shadow: 3px 3px 0 var(--lavender);
+  padding: 12px;
+  font-family: var(--font-pixel);
+}
+
+/* Header row: LEVEL badge · quest name · status */
+.eq-level-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.eq-level-badge {
+  flex-shrink: 0;
+  background: var(--purple-deep);
+  color: var(--white);
+  font-size: 8px;
+  letter-spacing: 1px;
+  padding: 5px 9px;
+  border-radius: 999px;
+}
+
+.eq-level-name {
+  flex: 1;
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--purple-mid);
+}
+
+.eq-level-status {
+  flex-shrink: 0;
+  font-size: 8px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: var(--lavender);
+  color: var(--purple-deep);
+}
+
+/* Body: emblem + main column */
+.eq-level-content {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.eq-level-emblem {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  background: var(--lavender-light);
+  border: 2px solid var(--purple-deep);
+  border-radius: 12px;
+}
+
+/* SVG-icon emblem — lavender tile for cleared quests,
+   pink tile for the active one. */
+.eq-level-emblem--icon { background: var(--lavender-light); }
+.eq-level--active .eq-level-emblem--icon { background: var(--pink-light); }
+.eq-level-emblem--icon img {
+  width: 34px;
+  height: 34px;
+}
+
+.eq-level-main { flex: 1; min-width: 0; }
+
+.eq-level-degree {
+  font-size: 10px;
+  color: var(--purple-deep);
+  line-height: 1.7;
+  margin-bottom: 6px;
+}
+.eq-level--active .eq-level-degree { color: var(--pink-hot); }
+
+.eq-level-place {
+  font-size: 8px;
+  color: var(--purple-mid);
+  line-height: 1.7;
+  margin-bottom: 9px;
+}
+
+/* Meta — one row per line, each with a leading icon */
+.eq-level-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 10px;
+}
+
+.eq-meta-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  font-size: 8px;
+  color: var(--purple-deep);
+  line-height: 1.9;
+}
+.eq-meta-item b { color: var(--pink-hot); }
+
+.eq-meta-icon {
+  flex-shrink: 0;
+  width: 13px;
+  height: 13px;
+  margin-top: 1px;
+}
+
+/* Coursework */
+.eq-courses { margin-top: 4px; }
+
+.eq-courses-label {
+  font-size: 9px;
+  color: var(--pink-hot);
+  letter-spacing: 1px;
+  padding-bottom: 7px;
+  margin-bottom: 9px;
+  border-bottom: 2px dashed var(--pink-light);
+}
+
+.eq-courses-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.eq-course {
+  font-size: 7px;
+  color: var(--purple-deep);
+  background: var(--lavender-light);
+  border: 1px solid var(--lavender);
+  border-radius: 999px;
+  padding: 5px 10px 5px 7px;
+  line-height: 1.5;
+}
+.eq-course::before {
+  content: '•';
+  color: var(--pink-hot);
+  margin-right: 4px;
+}
+
+/* Actions */
+.eq-level-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.eq-transcript-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  text-decoration: none;
+  color: var(--white);
+  background: var(--pink-hot);
+  border: 2px solid var(--purple-deep);
+  border-radius: 999px;
+  padding: 6px 11px;
+}
+.eq-transcript-btn:hover { background: var(--pink-medium); }
+
+.eq-btn-icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* Award chips (bottom of cleared-quest cards) */
+.eq-level-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.eq-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  color: var(--purple-deep);
+  background: var(--lavender-light);
+  border: 2px solid var(--lavender);
+  border-radius: 999px;
+  padding: 5px 11px 5px 8px;
+}
+
+.eq-chip-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Status accents */
+.eq-level--active .eq-level-status {
+  background: var(--pink-hot);
+  color: var(--white);
+}
+.eq-level--done { border-color: var(--lavender); }
+.eq-level--done .eq-level-status {
+  background: var(--lavender);
+  color: var(--purple-deep);
+}
+.eq-level--locked { opacity: 0.6; }
+
+/* ─── Right column: sidebar cards ─────────────── */
+.eq-sidebar {
+  display: grid;
+  /* Badge Inventory (middle) shrinks to fit its badges;
+     Player Stats + Quest Summary share the rest. */
+  grid-template-rows: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 8px;
+  min-height: 0;
+}
+
+/* Same look as the level cards, but with a purple accent */
+.eq-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--cream);
+  border: 3px solid var(--lavender);
+  border-radius: 16px;
+  box-shadow: 3px 3px 0 var(--lavender);
+  padding: 12px;
+  overflow: hidden;
+}
+
+/* Title as a purple pill (like the LEVEL badge), no strip */
+.eq-card-title {
+  flex-shrink: 0;
+  align-self: flex-start;
+  background: var(--purple-deep);
+  color: var(--white);
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  letter-spacing: 1px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+
+.eq-card-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: none;
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  color: var(--purple-deep);
+  line-height: 2;
+}
+.eq-card-body::-webkit-scrollbar { display: none; }
+
+/* ─── Player Stats card ───────────────────────── */
+.eq-stat { margin-bottom: 9px; }
+.eq-stat:last-child { margin-bottom: 0; }
+
+.eq-stat-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  line-height: 1.6;
+}
+
+.eq-stat-label { color: var(--purple-deep); }
+.eq-stat-value { flex-shrink: 0; color: var(--pink-hot); }
+
+.eq-stat-meter {
+  margin-top: 5px;
+  height: 7px;
+  background: var(--lavender-light);
+  border: 1px solid var(--purple-deep);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.eq-stat-fill {
+  height: 100%;
+  background: var(--pink-hot);
+  border-radius: 999px;
+}
+
+/* ─── Badge Inventory card ────────────────────── */
+.eq-badges {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(58px, 1fr));
+  gap: 10px;
+}
+
+.eq-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Each SVG sits in a purple box */
+.eq-badge-box {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--lavender);
+  border: 2px solid var(--purple-deep);
+  border-radius: 12px;
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.35);
+}
+
+.eq-badge-box img {
+  width: 62%;
+  height: 62%;
+}
+
+.eq-badge-label {
+  margin-top: 6px;
+  text-align: center;
+  font-size: 7px;
+  color: var(--purple-deep);
+  line-height: 1.7;
+}
+
+/* ─── Quest Summary card ──────────────────────── */
+.eq-sum-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 9px;
+  line-height: 1.6;
+}
+.eq-sum-row:last-child { margin-bottom: 0; }
+
+.eq-sum-label {
+  color: var(--purple-deep);
+  flex-shrink: 0;
+}
+
+.eq-sum-value {
+  text-align: right;
+  color: var(--pink-hot);
+}
