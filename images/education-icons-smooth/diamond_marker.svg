@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+
+<defs>
+  <style>
+    .s { stroke: #5B2D82; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .t { fill: #5B2D82; font-family: Arial, Helvetica, sans-serif; font-weight: 700; }
+  </style>
+</defs>
+
+
+<rect class="s" fill="#EBD9FF" x="18" y="18" width="28" height="28" rx="7" transform="rotate(45 32 32)"/>
+<circle class="s" fill="#F78ACB" cx="32" cy="32" r="6"/>
+
+</svg>

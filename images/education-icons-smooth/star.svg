@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+
+<defs>
+  <style>
+    .s { stroke: #5B2D82; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .t { fill: #5B2D82; font-family: Arial, Helvetica, sans-serif; font-weight: 700; }
+  </style>
+</defs>
+
+
+<path class="s" fill="#F5C04A" d="M32 8L37.9 23.5L54 24.6L41.5 34.8L45.5 50.4L32 41.5L18.5 50.4L22.5 34.8L10 24.6L26.1 23.5L32 8Z"/>
+
+</svg>

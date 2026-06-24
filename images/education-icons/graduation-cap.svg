@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" shape-rendering="crispEdges" role="img" aria-label="graduation cap">
+  <title>Graduation Cap</title>
+  
+<rect x="6" y="10" width="20" height="4" fill="#4A1D5F"/><rect x="2" y="14" width="28" height="4" fill="#4A1D5F"/><rect x="8" y="18" width="16" height="8" fill="#4A1D5F"/><rect x="24" y="18" width="2" height="8" fill="#4A1D5F"/><rect x="22" y="26" width="6" height="2" fill="#4A1D5F"/>
+<rect x="6" y="12" width="20" height="4" fill="#7A45C8"/><rect x="10" y="18" width="12" height="6" fill="#C9A7FF"/><rect x="12" y="18" width="8" height="4" fill="#7A45C8"/><rect x="24" y="18" width="2" height="6" fill="#FFD34E"/><rect x="23" y="24" width="4" height="2" fill="#FFD34E"/>
+<rect x="8" y="12" width="4" height="2" fill="#FFFFFF" opacity="0.8"/>
+
+</svg>
