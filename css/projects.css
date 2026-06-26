@@ -1,0 +1,461 @@
+/* ═══════════════════════════════════════════════
+   PROJECTS  —  sidebar + two-column card grid
+   Everything scoped under .projects (+ the
+   .projects-area host) so it can't leak into other
+   screens. Matches the site's pink/purple theme.
+═══════════════════════════════════════════════ */
+
+/* Host: opt the projects content area out of the
+   default flex-wrap / scroll-everything behaviour.
+   The frame stays put; only the card grid scrolls. */
+.projects-area {
+  display: block;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  padding: 8px;
+}
+
+/* Center the top header bar title for this screen */
+#screen-projects .section-header { justify-content: center; }
+
+.projects {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2.4fr;
+  gap: 8px;
+  min-height: 0;
+}
+
+/* ═══════════════════════════════════════════════
+   LEFT: PURPLE SIDEBAR
+═══════════════════════════════════════════════ */
+.pj-sidebar {
+  background: var(--purple-deep);
+  border: 3px solid var(--pink-hot);
+  border-radius: 16px;
+  box-shadow: 3px 3px 0 var(--lavender);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.pj-sidebar::-webkit-scrollbar { display: none; }
+
+/* Shared mini-card title used by stats + filter */
+.pj-card-title {
+  font-family: var(--font-pixel);
+  font-size: 7px;
+  color: var(--pink-light);
+  letter-spacing: 1px;
+  margin-bottom: 7px;
+}
+
+/* ─── Animated character (no frame box) ────────── */
+.pj-char-frame {
+  width: 100%;
+  height: 130px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: relative;
+}
+
+/* Soft pink platform/glow under the character's feet */
+.pj-char-frame::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center,
+    rgba(255,123,184,0.85) 0%, rgba(255,68,153,0.35) 55%, transparent 75%);
+  z-index: 0;
+}
+
+/* Centre + size the idle sprite inside the sidebar frame
+   (the .sprite base is position:absolute; reset it). */
+.pj-char-frame .sprite--adventurer-idle {
+  position: absolute;
+  left: 50%;
+  /* Nudge value: the idle PNG has empty space below the
+     feet, so pull it down to sit on the platform. Tweak
+     this single number if the feet drift off. */
+  bottom: -30px;
+  z-index: 1;
+  filter: none;
+  transform: translateX(-50%) scale(1.4);
+  transform-origin: bottom center;
+}
+
+/* Heart speech bubble at the character's top-right */
+.pj-speech {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  width: 28px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+  border: 2px solid var(--purple-deep);
+  border-radius: 9px;
+  color: var(--pink-hot);
+  font-size: 12px;
+  z-index: 2;
+  animation: floatBob 2s ease-in-out infinite;
+}
+/* Little tail pointing down toward the character */
+.pj-speech::after {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  left: 7px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 7px solid var(--purple-deep);
+}
+
+/* Sparkles floating around the character */
+.pj-spark {
+  position: absolute;
+  font-size: 9px;
+  color: var(--pink-light);
+  text-shadow: 1px 1px 0 var(--purple-deep);
+  animation: starPulse 1.8s ease-in-out infinite;
+  z-index: 1;
+}
+.pj-spark--1 { top: 22px;    left: 14px; }
+.pj-spark--2 { top: 52px;    right: 14px; animation-delay: 0.6s; }
+.pj-spark--3 { bottom: 34px; left: 22px; animation-delay: 1.1s; color: var(--lavender-light); }
+
+/* ─── "PROJECTS UNLOCKED" banner ──────────────── */
+.pj-unlocked {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255,68,153,0.14);
+  border: 3px solid var(--pink-hot);
+  border-radius: 12px;
+  padding: 8px 6px;
+  text-align: center;
+}
+.pj-unlocked-num {
+  font-family: var(--font-pixel);
+  font-size: 20px;
+  color: var(--white);
+  text-shadow: 2px 2px 0 var(--purple-deep);
+}
+.pj-unlocked-label {
+  font-family: var(--font-pixel);
+  font-size: 6px;
+  color: var(--pink-light);
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 0 var(--purple-deep);
+}
+
+/* ─── PROGRESS stats card ─────────────────────── */
+.pj-stats {
+  flex-shrink: 0;
+  background: rgba(255,68,153,0.10);
+  border: 2px solid var(--pink-hot);
+  border-radius: 12px;
+  padding: 9px;
+}
+.pj-stats-body {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.pj-stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-pixel);
+  font-size: 6px;
+}
+.pj-stat-label { color: var(--white); }
+.pj-stat-value {
+  color: var(--pink-light);
+}
+
+/* ─── CATEGORIES filter ───────────────────────── */
+.pj-filter {
+  flex-shrink: 0;
+  background: rgba(255,68,153,0.10);
+  border: 2px solid var(--pink-hot);
+  border-radius: 12px;
+  padding: 9px;
+}
+.pj-filter-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.pj-filter-chip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-pixel);
+  font-size: 6px;
+  color: var(--pink-light);
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  padding: 5px 7px;
+  cursor: pointer;
+  transition: transform 0.08s ease;
+}
+.pj-filter-chip:hover { transform: translateX(2px); }
+.pj-filter-chip--active {
+  background: rgba(255,68,153,0.30);
+  border-color: var(--pink-hot);
+  color: var(--white);
+}
+.pj-filter-count {
+  font-size: 6px;
+  color: var(--pink-light);
+  background: rgba(255,255,255,0.12);
+  border-radius: 6px;
+  padding: 1px 5px;
+}
+.pj-filter-chip--active .pj-filter-count {
+  background: rgba(255,255,255,0.25);
+  color: var(--white);
+}
+
+/* ═══════════════════════════════════════════════
+   RIGHT: INTRO BANNER + SINGLE-COLUMN CARD STACK
+═══════════════════════════════════════════════ */
+.pj-main {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 0;
+}
+
+/* Laptop + tagline banner above the project list */
+.pj-intro {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--cream);
+  border: 3px solid var(--pink-hot);
+  border-radius: 12px;
+  box-shadow: 3px 3px 0 var(--lavender);
+  padding: 8px 12px;
+}
+.pj-intro-icon {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+}
+.pj-intro-text {
+  margin: 0;
+  font-family: var(--font-pixel);
+  font-size: 7px;
+  line-height: 1.8;
+  color: var(--purple-deep);
+}
+
+.pj-grid {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  min-height: 0;
+  padding: 2px 6px 8px 2px;
+  scrollbar-width: none;
+}
+.pj-grid::-webkit-scrollbar { display: none; }
+
+.pj-empty {
+  text-align: center;
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  color: var(--purple-mid);
+  padding: 24px 0;
+}
+
+/* ─── Project card (horizontal: media + details) ── */
+.pj-card {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--cream);
+  border: 3px solid var(--pink-hot);
+  border-radius: 14px;
+  box-shadow: 4px 4px 0 var(--lavender);
+  font-family: var(--font-pixel);
+  overflow: hidden;
+}
+
+/* Alternate two-tone theme per stacked card */
+.pj-card--pink {
+  border-color: var(--pink-hot);
+  box-shadow: 4px 4px 0 var(--lavender);
+}
+.pj-card--pink .pj-card-name { color: var(--purple-deep); }
+
+.pj-card--purple {
+  border-color: var(--purple-mid);
+  box-shadow: 4px 4px 0 var(--pink-medium);
+}
+.pj-card--purple .pj-card-name { color: var(--purple-mid); }
+
+/* ★ FEATURED ribbon, top-left corner */
+.pj-ribbon {
+  position: absolute;
+  top: 10px;
+  left: -2px;
+  z-index: 3;
+  font-size: 6px;
+  color: var(--white);
+  letter-spacing: 1px;
+  background: linear-gradient(180deg, var(--pink-medium) 0%, var(--pink-hot) 100%);
+  border: 2px solid var(--white);
+  border-left: none;
+  border-radius: 0 9px 9px 0;
+  box-shadow: 2px 2px 0 rgba(74,32,96,0.35);
+  padding: 4px 8px;
+  text-shadow: 1px 1px 0 var(--purple-deep);
+}
+
+/* Heart, top-right corner */
+.pj-fav {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  z-index: 3;
+  font-size: 12px;
+  color: var(--pink-hot);
+  text-shadow: 1px 1px 0 var(--white);
+}
+
+/* Top region: image + details side by side */
+.pj-card-top {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+}
+
+.pj-card-media {
+  flex-shrink: 0;
+  width: 116px;
+  align-self: stretch;
+  border: 3px solid var(--purple-deep);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--lavender-light);
+}
+.pj-card-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 92px;
+  object-fit: contain;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+.pj-card-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.pj-card-name {
+  font-size: 11px;
+  line-height: 1.6;
+  margin: 4px 24px 7px 0;   /* keep clear of the heart */
+}
+
+.pj-cat-badge {
+  align-self: flex-start;
+  font-size: 6px;
+  letter-spacing: 1px;
+  color: var(--white);
+  background: linear-gradient(180deg, var(--pink-medium) 0%, var(--pink-hot) 100%);
+  border: 2px solid var(--white);
+  border-radius: 8px;
+  box-shadow: 0 2px 0 rgba(74,32,96,0.35);
+  padding: 3px 8px;
+  margin-bottom: 8px;
+}
+.pj-card--purple .pj-cat-badge {
+  background: linear-gradient(180deg, var(--lavender) 0%, var(--purple-mid) 100%);
+}
+
+.pj-card-body {
+  font-size: 7px;
+  color: var(--purple-deep);
+  line-height: 1.9;
+  margin: 0 0 9px;
+}
+
+/* TECH STACK label with trailing divider line */
+.pj-tech-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 6px;
+  letter-spacing: 1px;
+  color: var(--purple-mid);
+  margin-bottom: 6px;
+}
+.pj-tech-label::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg, var(--lavender) 0 4px, transparent 4px 8px);
+}
+
+.pj-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+/* Footer bar: year (left) + view link (right) */
+.pj-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 12px;
+  background: linear-gradient(180deg, var(--pink-medium) 0%, var(--pink-hot) 100%);
+  border-top: 3px solid var(--purple-deep);
+}
+.pj-card--purple .pj-card-footer {
+  background: linear-gradient(180deg, var(--lavender) 0%, var(--purple-mid) 100%);
+}
+.pj-year {
+  font-size: 7px;
+  color: var(--white);
+  text-shadow: 1px 1px 0 var(--purple-deep);
+}
+.pj-view {
+  font-size: 7px;
+  color: var(--white);
+  text-decoration: none;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 0 var(--purple-deep);
+  transition: transform 0.08s ease;
+}
+.pj-view:hover { transform: translateX(2px); }

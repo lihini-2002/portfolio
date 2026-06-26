@@ -182,6 +182,24 @@ function startAboutIdle() { _aboutIdle?.start(); }
 function stopAboutIdle()  { _aboutIdle?.stop();  }
 
 /* ═══════════════════════════════════════════════
+   PROJECTS SCREEN — idle sprite in the sidebar.
+   The host (#projects-sprite) is created by
+   _renderProjects(), so init lazily on first call.
+═══════════════════════════════════════════════ */
+let _projectsIdle = null;
+
+function initProjectsIdle() {
+  const el = document.getElementById('projects-sprite');
+  if (!el) return;
+  if (!_projectsIdle || _projectsIdle.el !== el) {
+    _projectsIdle = new SpriteAnimator(el, 8, 96, 4);
+  }
+}
+
+function startProjectsIdle() { _projectsIdle?.start(); }
+function stopProjectsIdle()  { _projectsIdle?.stop();  }
+
+/* ═══════════════════════════════════════════════
    SCENE DEFINITIONS
 ═══════════════════════════════════════════════ */
 function initAllScenes() {

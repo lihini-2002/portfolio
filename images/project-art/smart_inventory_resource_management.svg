@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" fill="none">
+
+  <defs>
+    <style>
+      .ol { stroke: #5B2D82; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+      .ot { fill: #5B2D82; font-family: Arial, Helvetica, sans-serif; font-weight: 700; }
+      .small { font-size: 18px; }
+      .med { font-size: 24px; }
+      .big { font-size: 36px; }
+    </style>
+  </defs>
+
+
+<rect class="ol" x="22" y="22" width="212" height="212" rx="34" fill="#EBD9FF"/>
+<rect class="ol" x="40" y="40" width="176" height="30" rx="14" fill="#F78ACB"/>
+<circle class="ol" cx="58" cy="55" r="6" fill="#FFF9FF"/>
+<circle class="ol" cx="78" cy="55" r="6" fill="#FFF9FF"/>
+<circle class="ol" cx="98" cy="55" r="6" fill="#FFF9FF"/>
+
+<!-- shelf -->
+<rect class="ol" x="48" y="92" width="116" height="12" rx="6" fill="#5B2D82"/>
+<rect class="ol" x="48" y="144" width="116" height="12" rx="6" fill="#5B2D82"/>
+<rect class="ol" x="56" y="72" width="22" height="20" rx="5" fill="#F5C04A"/>
+<rect class="ol" x="86" y="72" width="30" height="20" rx="5" fill="#B8F1E2"/>
+<rect class="ol" x="124" y="72" width="26" height="20" rx="5" fill="#8FD5FF"/>
+<rect class="ol" x="56" y="116" width="34" height="28" rx="6" fill="#F78ACB"/>
+<rect class="ol" x="98" y="120" width="22" height="24" rx="5" fill="#F5C04A"/>
+<rect class="ol" x="128" y="112" width="24" height="32" rx="5" fill="#A772F4"/>
+<path class="ol" d="M62 130h10M136 128h8M64 82h6M95 82h12"/>
+
+<!-- dashboard bubble -->
+<rect class="ol" x="174" y="86" width="44" height="52" rx="12" fill="#FFF9FF"/>
+<rect class="ol" x="184" y="119" width="8" height="10" rx="2" fill="#F78ACB"/>
+<rect class="ol" x="197" y="109" width="8" height="20" rx="2" fill="#B8F1E2"/>
+<rect class="ol" x="210" y="99" width="8" height="30" rx="2" fill="#F5C04A"/>
+<path class="ol" d="M183 101c6-8 12-8 18 0c4 5 7 6 14-2"/>
+
+<!-- sync arrows -->
+<path class="ol" d="M180 164c8-16 26-22 42-16"/>
+<path class="ol" d="M218 142l8 12l-14 2" fill="#B8F1E2"/>
+<path class="ol" d="M214 190c-8 16-26 22-42 16"/>
+<path class="ol" d="M176 212l-8-12l14-2" fill="#F78ACB"/>
+
+<text x="128" y="210" text-anchor="middle" class="ot med">INV</text>
+
+</svg>

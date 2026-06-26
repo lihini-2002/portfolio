@@ -153,36 +153,73 @@ const PORTFOLIO = {
     ],
   },
 
-  /* ── Projects ────────────────────────────────── */
+  /* ── Projects ────────────────────────────────────
+     `status`   : 'completed' | 'in-progress' | 'planned'
+     `category` : must match an id in `projectCategories`
+     `featured` : optional — shows a ★ badge + counts in
+                  the sidebar's FEATURED stat.
+     `year`     : optional — shown in the card footer.
+     `image`    : optional — defaults to category art at
+                  images/project-art/<category>.svg.
+  ─────────────────────────────────────────────── */
   projects: [
     {
-      title:       'PROJECT ALPHA',
-      description: 'A full-stack web app with real-time features.',
-      tech:        ['React', 'Node.js', 'PostgreSQL'],
-      github:      '#',
-      demo:        '#',
+      title:       'Smart Inventory and Resource Management System',
+      description: 'A full-stack, microservices-based Inventory Management System.',
+      tech:        ['Next.js', 'TypeScript', 'React', 'Spring Boot', 'Java', 'MySQL', 'Docker', 'JWT', 'REST APIs', 'Microservices'],
+      github:      'https://github.com/hasithasandunlakshan/Inventory-Management-System_Grp_16',
+      demo:        null,
+      status:      'completed',
+      category:    'web',
+      featured:    true,
+      year:        '2025',
+      image:       'images/project-art/smart_inventory_resource_management.svg',
     },
     {
-      title:       'PROJECT BETA',
-      description: 'Cross-platform mobile app built with React Native.',
-      tech:        ['React Native', 'Firebase'],
-      github:      '#',
+      title:       'RPAL Interpreter',
+      description: 'A Python-based interpreter for the RPAL programming language.',
+      tech:        ['Python'],
+      github:      'https://github.com/lihini-2002/rpal-interpreter.git',
       demo:        null,
+      status:      'completed',
+      category:    'low-level',
+      featured:    true,
+      year:        '2025',
+      image:       'images/project-art/rpal_interpreter.svg',
     },
     {
-      title:       'PROJECT GAMMA',
-      description: 'ML pipeline for image classification tasks.',
-      tech:        ['Python', 'TensorFlow', 'FastAPI'],
-      github:      '#',
+      title:       'ML-Based Phishing Detection',
+      description: 'A full-stack NLP-based phishing detection system.',
+      tech:        ['PyTorch', 'Transformers', 'FastAPI', 'Docker', 'GCP'],
+      github:      'https://github.com/lihini-2002/intelligent-cybersecurity-system.git',
       demo:        null,
+      status:      'completed',
+      category:    'ai-ml',
+      featured:    true,
+      year:        '2025',
+      image:       'images/project-art/ml_phishing_detection.svg',
     },
     {
-      title:       'PROJECT DELTA',
-      description: 'CLI tool for automated code quality checks.',
-      tech:        ['Python', 'AST', 'GitHub Actions'],
-      github:      '#',
+      title:       'Nanoprocessor',
+      description: 'A 4-bit VHDL-based nanoprocessor implemented on a BASYS 3 FPGA.',
+      tech:        ['VHDL', 'ModelSim', 'BASYS 3 FPGA'],
+      github:      'https://github.com/ashiduDissanayake/Nano-Processor-',
       demo:        null,
+      status:      'completed',
+      category:    'low-level',
+      featured:    true,
+      year:        '2024',
+      image:       'images/project-art/nano_processor.svg',
     },
+  ],
+
+  /* Filter categories shown in the Projects sidebar.
+     Add an entry here (and use its `id` on a project's
+     `category`) to add a new filter chip. */
+  projectCategories: [
+    { id: 'web',      label: 'WEB' },
+    { id: 'ai-ml',    label: 'AI / ML' },
+    { id: 'low-level', label: 'LOW-LEVEL' },
   ],
 
   /* ── Awards ──────────────────────────────────── */

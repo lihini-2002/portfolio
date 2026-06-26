@@ -45,6 +45,7 @@ function navigateTo(targetId, direction) {
   const fromInfo = SCREEN_INFO[_current];
   if (fromInfo?.stage) stopScene(fromInfo.stage);
   if (_current === 'screen-about') stopAboutIdle();
+  if (_current === 'screen-projects') stopProjectsIdle();
 
   /* Play exit animation on old screen */
   fromEl.classList.add(exitClass);
@@ -73,6 +74,7 @@ function navigateTo(targetId, direction) {
     const toInfo = SCREEN_INFO[targetId];
     if (toInfo?.stage) startScene(toInfo.stage);
     if (targetId === 'screen-about') startAboutIdle();
+    if (targetId === 'screen-projects') startProjectsIdle();
     if (targetId === 'screen-skills') _animateSkillBars();
 
     history.replaceState(null, '', `#${targetId.replace('screen-', '')}`);
@@ -309,22 +311,183 @@ function _eqSummaryCard(s) {
   `;
 }
 
+/* ─── Projects: sidebar + two-column card grid ────
+   Left purple sidebar (animated character + stats +
+   category filter) and a right grid whose left column
+   is pink-themed and right column purple-themed.
+─────────────────────────────────────────────────── */
+let _projectFilter = 'all';   // active category id, or 'all'
+
 function _renderProjects() {
   const el = document.getElementById('content-projects');
   if (!el) return;
-  el.innerHTML = PORTFOLIO.projects.map(p => `
-    <div class="content-card">
-      <div class="content-card__title">${p.title}</div>
-      <div class="content-card__body">${p.description}</div>
-      <div class="content-card__tags">
-        ${p.tech.map(t => `<span class="tag">${t}</span>`).join('')}
-      </div>
-      <div class="content-card__tags" style="margin-top:4px;">
-        ${p.github ? `<a href="${p.github}" class="tag tag--dark tag-link" target="_blank" rel="noopener">GIT</a>` : ''}
-        ${p.demo   ? `<a href="${p.demo}"   class="tag tag--hot  tag-link" target="_blank" rel="noopener">LIVE</a>` : ''}
+
+  el.innerHTML = `
+    <div class="projects">
+      ${_pjSidebar()}
+      <div class="pj-main">
+        <div class="pj-intro">
+          <img class="pj-intro-icon" src="images/education-icons-smooth/laptop.svg" alt="">
+          <p class="pj-intro-text">Some of the things I've built, broken and put back together</p>
+        </div>
+        <section class="pj-grid" id="pj-grid">
+          ${_pjCards(PORTFOLIO.projects)}
+        </section>
       </div>
     </div>
-  `).join('');
+  `;
+
+  /* The character host only exists now that the sidebar
+     has been injected — start its idle animation. */
+  initProjectsIdle();
+}
+
+function _pjSidebar() {
+  return `
+    <aside class="pj-sidebar">
+      <div class="pj-char-frame">
+        <div id="projects-sprite" class="sprite sprite--adventurer-idle"></div>
+        <div class="pj-speech" aria-hidden="true">♥</div>
+        <span class="pj-spark pj-spark--1" aria-hidden="true">✦</span>
+        <span class="pj-spark pj-spark--2" aria-hidden="true">✦</span>
+        <span class="pj-spark pj-spark--3" aria-hidden="true">✧</span>
+      </div>
+      ${_pjUnlockedBanner()}
+      ${_pjStatsCard()}
+      ${_pjFilter()}
+    </aside>
+  `;
+}
+
+function _pjCount(predicate) {
+  return PORTFOLIO.projects.filter(predicate).length;
+}
+
+function _pjUnlockedBanner() {
+  return `
+    <div class="pj-unlocked">
+      <span class="pj-unlocked-num">${PORTFOLIO.projects.length}</span>
+      <span class="pj-unlocked-label">PROJECTS UNLOCKED</span>
+    </div>
+  `;
+}
+
+function _pjStatsCard() {
+  const rows = [
+    { label: 'Featured',    value: _pjCount(p => p.featured) },
+    { label: 'Completed',   value: _pjCount(p => p.status === 'completed') },
+    { label: 'In Progress', value: _pjCount(p => p.status === 'in-progress') },
+    { label: 'Planned',     value: _pjCount(p => p.status === 'planned') },
+  ];
+  return `
+    <div class="pj-stats">
+      <div class="pj-card-title">PROGRESS</div>
+      <div class="pj-stats-body">
+        ${rows.map(r => `
+          <div class="pj-stat-row">
+            <span class="pj-stat-label">${r.label}</span>
+            <span class="pj-stat-value">${r.value}</span>
+          </div>`).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function _pjFilter() {
+  const chip = (id, label, count, active) => `
+    <button class="pj-filter-chip${active ? ' pj-filter-chip--active' : ''}"
+            data-filter="${id}" type="button">
+      <span class="pj-filter-name">${label}</span>
+      <span class="pj-filter-count">${count}</span>
+    </button>`;
+
+  const cats = PORTFOLIO.projectCategories.map(c =>
+    chip(c.id, c.label, _pjCount(p => p.category === c.id), _projectFilter === c.id)
+  ).join('');
+
+  return `
+    <div class="pj-filter">
+      <div class="pj-card-title">CATEGORIES</div>
+      <div class="pj-filter-list">
+        ${chip('all', 'ALL', PORTFOLIO.projects.length, _projectFilter === 'all')}
+        ${cats}
+      </div>
+    </div>
+  `;
+}
+
+function _pjCards(projects) {
+  if (!projects.length) {
+    return `<div class="pj-empty">NO PROJECTS HERE YET ✦</div>`;
+  }
+  return projects.map(_pjCard).join('');
+}
+
+/* Category id → display label (from projectCategories). */
+function _pjCatLabel(id) {
+  const cat = PORTFOLIO.projectCategories.find(c => c.id === id);
+  return cat ? cat.label : (id || '').toUpperCase();
+}
+
+function _pjCard(p, i) {
+  /* Alternate the two-tone theme per stacked card. */
+  const theme = i % 2 === 0 ? 'pj-card--pink' : 'pj-card--purple';
+  const image = p.image || `images/project-art/${p.category}.svg`;
+  const link  = p.demo || p.github;
+
+  return `
+    <article class="pj-card ${theme}">
+      ${p.featured ? `<span class="pj-ribbon">★ FEATURED</span>` : ''}
+      <span class="pj-fav" aria-hidden="true">♥</span>
+
+      <div class="pj-card-top">
+        <div class="pj-card-media">
+          <img src="${image}" alt="" loading="lazy">
+        </div>
+        <div class="pj-card-main">
+          <h3 class="pj-card-name">${p.title}</h3>
+          <span class="pj-cat-badge">${_pjCatLabel(p.category)}</span>
+          <p class="pj-card-body">${p.description}</p>
+          <div class="pj-techstack">
+            <div class="pj-tech-label">TECH STACK</div>
+            <div class="pj-tech-tags">
+              ${p.tech.map(t => `<span class="tag">${t}</span>`).join('')}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pj-card-footer">
+        <span class="pj-year">${p.year ? `★ ${p.year}` : ''}</span>
+        ${link ? `<a class="pj-view" href="${link}" target="_blank" rel="noopener">VIEW PROJECT ▸</a>` : ''}
+      </div>
+    </article>
+  `;
+}
+
+/* Re-render only the card grid for the active filter. */
+function _renderProjectGrid() {
+  const grid = document.getElementById('pj-grid');
+  if (!grid) return;
+  const list = _projectFilter === 'all'
+    ? PORTFOLIO.projects
+    : PORTFOLIO.projects.filter(p => p.category === _projectFilter);
+  grid.innerHTML = _pjCards(list);
+}
+
+/* Click handling for the category filter chips. */
+function _wireProjectFilter() {
+  const el = document.getElementById('content-projects');
+  if (!el) return;
+  el.addEventListener('click', e => {
+    const chip = e.target.closest('.pj-filter-chip');
+    if (!chip) return;
+    _projectFilter = chip.dataset.filter;
+    el.querySelectorAll('.pj-filter-chip').forEach(c =>
+      c.classList.toggle('pj-filter-chip--active', c.dataset.filter === _projectFilter)
+    );
+    _renderProjectGrid();
+  });
 }
 
 function _renderAwards() {
@@ -469,6 +632,7 @@ function _resolveHash() {
       const info = SCREEN_INFO[screenId];
       if (info?.stage) startScene(info.stage);
       if (screenId === 'screen-about') startAboutIdle();
+      if (screenId === 'screen-projects') startProjectsIdle();
       if (screenId === 'screen-skills') _animateSkillBars();
     }
   }
@@ -485,6 +649,7 @@ document.addEventListener('DOMContentLoaded', () => {
   _wireBackButtons();
   _wireAboutContinue();
   _wireTitleClick();
+  _wireProjectFilter();
 
   /* Start title scene */
   startScene('title-sprite-stage');

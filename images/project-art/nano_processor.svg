@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" fill="none">
+
+  <defs>
+    <style>
+      .ol { stroke: #5B2D82; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+      .ot { fill: #5B2D82; font-family: Arial, Helvetica, sans-serif; font-weight: 700; }
+      .small { font-size: 18px; }
+      .med { font-size: 24px; }
+      .big { font-size: 36px; }
+    </style>
+  </defs>
+
+
+<rect class="ol" x="22" y="22" width="212" height="212" rx="34" fill="#EBD9FF"/>
+
+<!-- central chip -->
+<rect class="ol" x="78" y="78" width="100" height="100" rx="20" fill="#A772F4"/>
+<rect class="ol" x="98" y="98" width="60" height="60" rx="10" fill="#FFF9FF"/>
+<path class="ol" d="M118 116h20M118 128h20M118 140h20"/>
+<circle class="ol" cx="128" cy="128" r="8" fill="#F5C04A"/>
+
+<!-- pins -->
+<path class="ol" d="M96 54v24M120 54v24M144 54v24M160 54v24"/>
+<path class="ol" d="M96 178v24M120 178v24M144 178v24M160 178v24"/>
+<path class="ol" d="M54 96h24M54 120h24M54 144h24M54 160h24"/>
+<path class="ol" d="M178 96h24M178 120h24M178 144h24M178 160h24"/>
+
+<!-- orbit / nano vibe -->
+<circle class="ol" cx="190" cy="66" r="10" fill="#F78ACB"/>
+<path class="ol" d="M154 84c18-28 42-36 56-18"/>
+<circle class="ol" cx="58" cy="194" r="8" fill="#B8F1E2"/>
+<path class="ol" d="M80 170c-12 12-20 20-28 24"/>
+
+<text x="128" y="224" text-anchor="middle" class="ot med">NANO CPU</text>
+
+</svg>
