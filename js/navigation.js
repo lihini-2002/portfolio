@@ -46,6 +46,7 @@ function navigateTo(targetId, direction) {
   if (fromInfo?.stage) stopScene(fromInfo.stage);
   if (_current === 'screen-about') stopAboutIdle();
   if (_current === 'screen-projects') stopProjectsIdle();
+  if (_current === 'screen-awards') stopTrophyGame();
 
   /* Play exit animation on old screen */
   fromEl.classList.add(exitClass);
@@ -75,6 +76,7 @@ function navigateTo(targetId, direction) {
     if (toInfo?.stage) startScene(toInfo.stage);
     if (targetId === 'screen-about') startAboutIdle();
     if (targetId === 'screen-projects') startProjectsIdle();
+    if (targetId === 'screen-awards') startTrophyGame();
     if (targetId === 'screen-skills') _animateSkillBars();
 
     history.replaceState(null, '', `#${targetId.replace('screen-', '')}`);
@@ -633,6 +635,7 @@ function _resolveHash() {
       if (info?.stage) startScene(info.stage);
       if (screenId === 'screen-about') startAboutIdle();
       if (screenId === 'screen-projects') startProjectsIdle();
+      if (screenId === 'screen-awards') startTrophyGame();
       if (screenId === 'screen-skills') _animateSkillBars();
     }
   }
@@ -644,6 +647,7 @@ function _resolveHash() {
 document.addEventListener('DOMContentLoaded', () => {
   initAllScenes();      /* sprites.js */
   renderAllContent();
+  initTrophyGame();     /* trophy-game.js */
   renderMenuPortals();
   _wireDpad();
   _wireBackButtons();

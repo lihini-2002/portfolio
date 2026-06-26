@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" fill="none">
+
+<defs>
+  <style>
+    .ol { stroke: #5B2D82; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+  </style>
+  <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+    <feGaussianBlur stdDeviation="4" result="blur"/>
+    <feMerge>
+      <feMergeNode in="blur"/>
+      <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+  </filter>
+</defs>
+
+
+
+<g filter="url(#glow)">
+  <path class="ol" fill="#FFF9FF" d="M198 44c3 14 4 15 18 18c-14 3-15 4-18 18c-3-14-4-15-18-18c14-3 15-4 18-18Z"/>
+  <path class="ol" fill="#FFF9FF" d="M61 156c2 10 3 11 13 13c-10 2-11 3-13 13c-2-10-3-11-13-13c10-2 11-3 13-13Z"/>
+  <path class="ol" fill="#FFF9FF" d="M173 180c1.5 7 2 8 9 9c-7 1.5-8 2-9 9c-1.5-7-2-8-9-9c7-1 8-2 9-9Z"/>
+</g>
+
+<g filter="url(#glow)">
+  <path class="ol" fill="#F5C04A" d="M72 72h112v34c0 36-25 65-56 65s-56-29-56-65V72Z"/>
+  <path class="ol" fill="#F5C04A" d="M72 84H45c0 26 12 44 30 49"/>
+  <path class="ol" fill="#F5C04A" d="M184 84h27c0 26-12 44-30 49"/>
+  <path class="ol" fill="#F5C04A" d="M105 171h46v22h-46z"/>
+  <path class="ol" fill="#A772F4" d="M88 194h80v28H88z"/>
+  <path class="ol" fill="#EBD9FF" d="M84 214h88v18H84z"/>
+  <rect class="ol" x="102" y="202" width="52" height="10" rx="3" fill="#F5C04A"/>
+  <path class="ol" fill="#FFF9FF" d="M128 102c3 12 4 13 16 16c-12 3-13 4-16 16c-3-12-4-13-16-16c12-3 13-4 16-16Z"/>
+</g>
+
+</svg>
