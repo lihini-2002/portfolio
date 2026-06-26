@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" shape-rendering="crispEdges">
+  <defs>
+    <linearGradient id="wSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E8D4F8"/>
+      <stop offset="1" stop-color="#FFB8D4"/>
+    </linearGradient>
+  </defs>
+  <rect width="160" height="120" fill="url(#wSky)"/>
+  <!-- clouds -->
+  <g fill="#FFFFFF">
+    <rect x="18" y="16" width="20" height="6"/><rect x="22" y="12" width="12" height="6"/>
+    <rect x="112" y="22" width="24" height="6"/><rect x="118" y="18" width="12" height="6"/>
+  </g>
+  <!-- sun -->
+  <rect x="128" y="10" width="14" height="14" fill="#FFD86B"/>
+  <!-- hills -->
+  <rect x="0" y="96" width="160" height="24" fill="#9BD18B"/>
+  <rect x="0" y="92" width="60" height="8" fill="#B6E0A6"/>
+  <rect x="96" y="90" width="64" height="10" fill="#B6E0A6"/>
+  <!-- browser window -->
+  <rect x="34" y="34" width="92" height="58" fill="#4A2060"/>
+  <rect x="37" y="37" width="86" height="52" fill="#FFF0F8"/>
+  <rect x="37" y="37" width="86" height="11" fill="#FF7BB8"/>
+  <rect x="41" y="41" width="4" height="4" fill="#FFF0F8"/>
+  <rect x="48" y="41" width="4" height="4" fill="#FFF0F8"/>
+  <rect x="55" y="41" width="4" height="4" fill="#FFF0F8"/>
+  <!-- page content cards -->
+  <rect x="42" y="53" width="22" height="20" fill="#FFB8D4"/>
+  <rect x="68" y="53" width="22" height="20" fill="#C4A8E0"/>
+  <rect x="94" y="53" width="22" height="20" fill="#FFB8D4"/>
+  <rect x="42" y="77" width="74" height="4" fill="#C4A8E0"/>
+  <rect x="42" y="83" width="50" height="4" fill="#E8D4F8"/>
+  <!-- hearts -->
+  <g fill="#FF4499">
+    <rect x="50" y="58" width="6" height="4"/><rect x="48" y="60" width="10" height="4"/><rect x="50" y="64" width="6" height="2"/>
+  </g>
+</svg>

@@ -918,7 +918,7 @@
 .tag {
   background: var(--lavender);
   border: 1px solid var(--purple-deep);
-  font-size: 5px;
+  font-size: 7px;
   padding: 1px 4px;
   color: var(--purple-deep);
   font-family: var(--font-pixel);
