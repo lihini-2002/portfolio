@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" fill="none">
+
+<defs>
+  <style>
+    .ol { stroke: #5A2B82; stroke-width: 6; stroke-linejoin: miter; stroke-linecap: square; }
+    .thin { stroke: #5A2B82; stroke-width: 4; stroke-linejoin: miter; stroke-linecap: square; }
+    .txt { fill: #FFF9FF; font-family: Arial, Helvetica, sans-serif; font-weight: 700; }
+  </style>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+    <feDropShadow dx="0" dy="4" stdDeviation="2" flood-color="#d89adf" flood-opacity="0.5"/>
+  </filter>
+</defs>
+
+
+<g filter="url(#shadow)">
+  <rect class="ol" x="112" y="118" width="32" height="88" fill="#A46A3A"/>
+  <rect class="ol" x="62" y="68" width="132" height="70" fill="#7F4D26"/>
+  <rect class="ol" x="74" y="80" width="108" height="46" fill="#F4BE47"/>
+  <text x="128" y="112" text-anchor="middle" class="txt" font-size="28" fill="#4A1F6D">START</text>
+  <rect class="ol" x="92" y="206" width="72" height="12" fill="#4A1F6D"/>
+  <rect class="ol" x="38" y="216" width="26" height="18" fill="#48B870"/>
+  <rect class="ol" x="62" y="220" width="18" height="14" fill="#75D89D"/>
+  <rect class="ol" x="182" y="220" width="20" height="14" fill="#75D89D"/>
+</g>
+
+</svg>

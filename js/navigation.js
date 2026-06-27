@@ -529,14 +529,111 @@ function _renderSkills() {
 function _renderContact() {
   const el = document.getElementById('content-contact');
   if (!el) return;
-  el.innerHTML = `<div class="contact-grid" style="width:100%;">` +
-    PORTFOLIO.contact.map(c => `
-      <a href="${c.href}" class="contact-item" target="_blank" rel="noopener">
-        <span class="contact-icon">${c.icon}</span>
-        <span>${c.label}</span>
-      </a>
-    `).join('') +
-  `</div>`;
+
+  const stations = PORTFOLIO.contact.map(c => `
+    <a class="rm-station" href="${c.href}" target="_blank" rel="noopener">
+      <div class="rm-marker"><img src="${c.icon}" alt=""></div>
+      <div class="rm-title">${c.label}</div>
+      <div class="rm-sub">${c.sub}</div>
+    </a>`).join('');
+
+  el.innerHTML = `
+    <div class="contact-page">
+
+      <!-- Floating decorations (clouds / hearts / stars) -->
+      <div class="contact-decor" aria-hidden="true">
+        <img class="cd cd-cloud cd-cloud--1" src="images/decor/soft_cloud_pink.svg" alt="">
+        <img class="cd cd-cloud cd-cloud--2" src="images/decor/soft_cloud_purple.svg" alt="">
+        <img class="cd cd-cloud cd-cloud--3" src="images/decor/soft_cloud_purple.svg" alt="">
+        <img class="cd cd-cloud cd-cloud--4" src="images/decor/soft_cloud_pink.svg" alt="">
+        <img class="cd cd-heart cd-heart--1" src="images/decor/soft_heart_pink.svg" alt="">
+        <img class="cd cd-heart cd-heart--2" src="images/decor/soft_tiny_heart.svg" alt="">
+        <img class="cd cd-heart cd-heart--3" src="images/decor/soft_heart_pink.svg" alt="">
+        <img class="cd cd-heart cd-heart--4" src="images/decor/soft_tiny_heart.svg" alt="">
+        <img class="cd cd-star cd-star--1" src="images/decor/soft_star_pink.svg" alt="">
+        <img class="cd cd-star cd-star--2" src="images/decor/soft_star_white.svg" alt="">
+        <img class="cd cd-star cd-star--3" src="images/decor/soft_star_pink.svg" alt="">
+      </div>
+
+      <!-- TOP: message form -->
+      <form class="contact-form"
+            action="https://formspree.io/f/YOUR_ID" method="POST">
+        <!-- Soft pastel decorations inside the box -->
+        <div class="contact-form-bg" aria-hidden="true">
+          <img class="cfbg cfbg-cloud--tl" src="images/decor/soft_cloud_corner.svg" alt="">
+          <img class="cfbg cfbg-cloud--br" src="images/decor/soft_cloud_purple.svg" alt="">
+          <img class="cfbg cfbg-cloud--tr" src="images/decor/soft_cloud_pink.svg" alt="">
+          <img class="cfbg cfbg-cloud--bl" src="images/decor/soft_cloud_pink.svg" alt="">
+          <img class="cfbg cfbg-cloud--mid" src="images/decor/soft_cloud_purple.svg" alt="">
+          <img class="cfbg cfbg-cloud--p1" src="images/decor/soft_cloud_purple.svg" alt="">
+          <img class="cfbg cfbg-cloud--p2" src="images/decor/soft_cloud_purple.svg" alt="">
+          <img class="cfbg cfbg-cloud--p3" src="images/decor/soft_cloud_purple.svg" alt="">
+          <img class="cfbg cfbg-sparkle"   src="images/decor/soft_sparkle_set.svg" alt="">
+          <img class="cfbg cfbg-star"       src="images/decor/soft_star_pink.svg" alt="">
+          <img class="cfbg cfbg-heart"      src="images/decor/soft_heart_pink.svg" alt="">
+        </div>
+        <div class="contact-form-title">
+          <img class="contact-form-computer" src="images/contact/retro_computer.svg" alt="">
+          <span>SEND A MESSAGE</span>
+        </div>
+        <div class="contact-fields">
+          <label class="contact-field">
+            <span class="contact-label">NAME</span>
+            <input class="contact-input" type="text" name="name"
+                   placeholder="your name" required>
+          </label>
+          <label class="contact-field">
+            <span class="contact-label">EMAIL</span>
+            <input class="contact-input" type="email" name="email"
+                   placeholder="you@email.com" required>
+          </label>
+          <label class="contact-field contact-field--full">
+            <span class="contact-label">MESSAGE</span>
+            <textarea class="contact-input contact-textarea" name="message"
+                      rows="4" placeholder="say hi..." required></textarea>
+          </label>
+        </div>
+        <button class="contact-send" type="submit">SEND ▸</button>
+      </form>
+
+      <!-- RESUME row -->
+      <div class="contact-box contact-resume">
+        <img class="contact-sticker contact-sticker--left"
+             src="images/contact/art_pixel_sticker.gif" alt="" aria-hidden="true">
+        <div class="contact-resume-info">
+          <div class="contact-box-title">📄 RESUME</div>
+          <p class="contact-box-text">Grab a copy of my latest resume.</p>
+          <a class="contact-download" href="${PORTFOLIO.resumeUrl}"
+             target="_blank" rel="noopener">
+            ⬇ DOWNLOAD
+          </a>
+        </div>
+        <img class="contact-sticker contact-sticker--right"
+             src="images/contact/happy_in_love_sticker.gif" alt="" aria-hidden="true">
+      </div>
+
+      <!-- WAYS TO CONNECT — road map -->
+      <div class="contact-box contact-roadmap">
+        <div class="rm-header">★ WAYS TO CONNECT — CHOOSE YOUR PATH</div>
+        <div class="rm-track">
+          <img class="rm-sign rm-start" src="images/contact/start_sign.svg" alt="Start">
+          <img class="rm-sticker" src="images/contact/dance_love_sticker.gif"
+               alt="" aria-hidden="true">
+          <div class="rm-stations">
+            <svg class="rm-path" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M2,10 Q 16,1 25,10 T 50,10 T 75,10 T 98,10"
+                    fill="none" stroke="#FF4499" stroke-width="1.2"
+                    stroke-linecap="round" stroke-dasharray="0.4 3"
+                    vector-effect="non-scaling-stroke"/>
+            </svg>
+            ${stations}
+          </div>
+          <img class="rm-sign rm-end" src="images/contact/end_flag_sign.svg" alt="Connect">
+        </div>
+      </div>
+
+    </div>
+  `;
 }
 
 /* ═══════════════════════════════════════════════
