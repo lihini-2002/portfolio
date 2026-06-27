@@ -586,47 +586,7 @@
 .bio-decor--3 { width: 12px; bottom: 8px; right: 12px; animation-delay: 1s;   }
 .bio-decor--4 { width: 9px;  bottom: 12px; right: 36px; animation-delay: 1.5s; }
 
-/* Continue button — floats at the bottom-right of the screen */
-.continue-btn {
-  position: absolute;
-  bottom: 10px;
-  right: 8px;
-  border-radius: 4px;
-  width: auto;
-  padding: 4px 8px;
-  font-size: 6px;
-  z-index: 20;
-}
-
-/* ── Pill BACK / NEXT buttons (this screen only) ── */
-#screen-about .back-btn,
-#screen-about .continue-btn {
-  bottom: 12px;
-  height: 24px;
-  padding: 0 14px;
-  font-size: 7px;
-  border-radius: 999px;
-  border: 2px solid var(--pink-hot);
-  letter-spacing: 1px;
-  box-shadow: 0 3px 0 rgba(74,32,96,0.45);
-}
-#screen-about .back-btn {
-  left: 12px;
-  background: linear-gradient(180deg, #5a2d7a 0%, #3d1a5c 100%);
-  color: var(--pink-light);
-}
-#screen-about .continue-btn {
-  right: 12px;
-  background: linear-gradient(180deg, var(--pink-medium) 0%, var(--pink-hot) 100%);
-  color: var(--white);
-  border-color: #fff;
-  text-shadow: 1px 1px 0 var(--purple-deep);
-}
-#screen-about .back-btn:active,
-#screen-about .continue-btn:active {
-  transform: translateY(2px);
-  box-shadow: 0 1px 0 rgba(74,32,96,0.45);
-}
+/* BACK / NEXT pill buttons are now shared globally — see main.css */
 
 /* Portrait: stack the artist sheet into a single column */
 @media (orientation: portrait) {
@@ -812,16 +772,6 @@
 .dpad-right { grid-column: 3; grid-row: 2; border-radius: 0 3px 3px 0; }
 .dpad-down  { grid-column: 2; grid-row: 3; border-radius: 0 0 3px 3px; }
 
-.ab-buttons {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
 /* ═══════════════════════════════════════════════
    SECTION SCREENS  (Education / Projects / etc.)
 ═══════════════════════════════════════════════ */
@@ -842,6 +792,7 @@
   border-bottom: 3px solid var(--accent, var(--pink-hot));
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 0 8px;
   gap: 6px;
   flex-shrink: 0;

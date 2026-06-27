@@ -6,15 +6,15 @@ const PORTFOLIO = {
 
   /* ── About ──────────────────────────────────── */
   name:       'Gayathri Harshila',
-  email:      'gayathri.22@cse.mrt.ac.lk',
-  role:       'CS Engineer',
+  email:      'gayathriharshila@gmail.com',
+  role:       'CS and Engineering Student',
   university: 'University of Moratuwa',
   bio: [
     'A passionate CS student who',
     'builds things, breaks things,',
     'then builds them better.',
     'Loves software engineering',
-    '& human-computer interaction.',
+    '& system design.',
   ].join(' '),
 
   /* Skill bar percentages shown on About card */
@@ -343,10 +343,10 @@ const PORTFOLIO = {
   resumeUrl: 'https://drive.google.com/uc?export=download&id=1LNqUz-ViREkskQOykuq4dk_Cj-OUEuRG',
   contact: [
     { label: 'EMAIL',    sub: 'Drop me a mail', badge: 'FAST REPLY',
-      icon: 'images/contact/mail_envelope.svg',  href: 'mailto:gayathri.22@cse.mrt.ac.lk' },
+      icon: 'images/contact/mail_envelope.svg',  href: 'mailto:gayathriharshila@gmail.com' },
     { label: 'LINKEDIN', sub: "Let's connect?",  badge: 'PROFESSIONAL',
-      icon: 'images/contact/linkedin_badge.svg', href: 'https://linkedin.com/in/' },
+      icon: 'images/contact/linkedin_badge.svg', href: 'https://www.linkedin.com/in/gayathri-lihinikaduarachchi/' },
     { label: 'GITHUB',   sub: 'Check my code',   badge: 'OPEN SOURCE',
-      icon: 'images/contact/github_logo.gif',    href: 'https://github.com/' },
+      icon: 'images/contact/github_logo.gif',    href: 'https://github.com/lihini-2002' },
   ],
 };
