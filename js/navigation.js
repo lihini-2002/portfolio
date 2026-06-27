@@ -77,7 +77,6 @@ function navigateTo(targetId, direction) {
     if (targetId === 'screen-about') startAboutIdle();
     if (targetId === 'screen-projects') startProjectsIdle();
     if (targetId === 'screen-awards') startTrophyGame();
-    if (targetId === 'screen-skills') _animateSkillBars();
 
     history.replaceState(null, '', `#${targetId.replace('screen-', '')}`);
   }, DURATION);
@@ -496,10 +495,13 @@ function _renderAwards() {
   const el = document.getElementById('content-awards');
   if (!el) return;
   el.innerHTML = PORTFOLIO.awards.map(a => `
-    <div class="content-card" style="text-align:center;">
-      <span class="content-card__icon">${a.icon}</span>
-      <div class="content-card__title">${a.title}</div>
-      <div class="content-card__body">${a.org}</div>
+    <div class="content-card award-card">
+      <div class="award-card__head">
+        <span class="content-card__icon award-card__icon">${a.icon}</span>
+        <div class="content-card__title award-card__title">${a.title}</div>
+      </div>
+      <div class="content-card__body award-card__org">${a.org}</div>
+      ${a.desc ? `<div class="award-card__desc">${a.desc}</div>` : ''}
     </div>
   `).join('');
 }
@@ -507,27 +509,21 @@ function _renderAwards() {
 function _renderSkills() {
   const el = document.getElementById('content-skills');
   if (!el) return;
-  el.innerHTML = `<div class="skills-grid" style="width:100%;">` +
-    PORTFOLIO.skills.map(s => `
-      <div class="skill-row">
-        <div class="skill-header">
-          <span class="skill-name">${s.icon || ''} ${s.name}</span>
-          <span class="skill-pct">${s.level}%</span>
+  el.innerHTML = `<div class="skills-cats">` +
+    PORTFOLIO.skills.map(cat => `
+      <div class="skill-cat">
+        <div class="skill-cat__title">${cat.category}</div>
+        <div class="skill-cat__grid">
+          ${cat.techs.map(t => `
+            <div class="skill-tech">
+              <span class="skill-tech__logo">${
+                t.icon ? `<i class="${t.icon}"></i>` : (t.emoji || '')
+              }</span>
+              <span class="skill-tech__name">${t.name}</span>
+            </div>`).join('')}
         </div>
-        <div class="skill-meter">
-          <div class="skill-fill" data-level="${s.level}"></div>
-        </div>
-      </div>
-    `).join('') +
+      </div>`).join('') +
   `</div>`;
-}
-
-function _animateSkillBars() {
-  setTimeout(() => {
-    document.querySelectorAll('#content-skills .skill-fill').forEach(bar => {
-      bar.style.width = bar.dataset.level + '%';
-    });
-  }, 80);
 }
 
 function _renderContact() {
@@ -636,7 +632,6 @@ function _resolveHash() {
       if (screenId === 'screen-about') startAboutIdle();
       if (screenId === 'screen-projects') startProjectsIdle();
       if (screenId === 'screen-awards') startTrophyGame();
-      if (screenId === 'screen-skills') _animateSkillBars();
     }
   }
 }

@@ -942,54 +942,7 @@
 }
 
 /* ─── Skills screen  ─── */
-.skills-grid {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.skill-row {
-  width: 100%;
-  animation: floatBob 2s ease-in-out infinite;
-}
-.skill-row:nth-child(2) { animation-delay: -0.3s; }
-.skill-row:nth-child(3) { animation-delay: -0.7s; }
-.skill-row:nth-child(4) { animation-delay: -1.1s; }
-.skill-row:nth-child(5) { animation-delay: -1.4s; }
-.skill-row:nth-child(6) { animation-delay: -1.8s; }
-
-.skill-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 3px;
-}
-
-.skill-name {
-  font-size: 6px;
-  color: var(--purple-deep);
-}
-
-.skill-pct {
-  font-size: 6px;
-  color: var(--pink-hot);
-}
-
-.skill-meter {
-  width: 100%;
-  height: 10px;
-  background: var(--pink-light);
-  border: 2px solid var(--purple-deep);
-}
-
-.skill-fill {
-  height: 100%;
-  width: 0;
-  background: linear-gradient(90deg, var(--pink-hot) 0%, var(--pink-medium) 100%);
-  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: inset 0 -2px 0 rgba(0,0,0,0.15);
-}
+/* ─── Skills screen styles live in css/skills.css ─── */
 
 /* ─── Contact screen ─── */
 .contact-grid {
