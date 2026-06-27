@@ -199,16 +199,49 @@ button:focus-visible {
 }
 .btn-b:active { transform: translate(2px, 2px); box-shadow: none; }
 
-/* Back button — floats at the bottom-left of the screen */
-.back-btn {
+/* ═══════════════════════════════════════════════
+   PILL NAV BUTTONS — BACK (left) / NEXT (right)
+   Consistent on every screen.
+═══════════════════════════════════════════════ */
+.back-btn,
+.continue-btn {
   position: absolute;
-  bottom: 10px;
-  left: 8px;
-  border-radius: 4px;
+  bottom: 12px;
+  height: 24px;
   width: auto;
-  padding: 4px 8px;
-  font-size: 6px;
+  padding: 0 14px;
+  font-size: 7px;
+  letter-spacing: 1px;
+  border-radius: 999px;
+  border: 2px solid var(--pink-hot);
+  box-shadow: 0 3px 0 rgba(74, 32, 96, 0.45);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   z-index: 20;
+  transition: transform 0.05s, box-shadow 0.05s;
+}
+
+/* BACK — bottom-left */
+.back-btn {
+  left: 12px;
+  background: linear-gradient(180deg, #5a2d7a 0%, #3d1a5c 100%);
+  color: var(--pink-light);
+}
+
+/* NEXT — bottom-right */
+.continue-btn {
+  right: 12px;
+  background: linear-gradient(180deg, var(--pink-medium) 0%, var(--pink-hot) 100%);
+  color: var(--white);
+  border-color: #fff;
+  text-shadow: 1px 1px 0 var(--purple-deep);
+}
+
+.back-btn:active,
+.continue-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 rgba(74, 32, 96, 0.45);
 }
 
 /* ═══════════════════════════════════════════════

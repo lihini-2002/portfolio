@@ -15,9 +15,6 @@
   padding: 8px;
 }
 
-/* Center the top header bar title for this screen */
-#screen-projects .section-header { justify-content: center; }
-
 .projects {
   height: 100%;
   display: grid;

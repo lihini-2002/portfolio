@@ -75,3 +75,15 @@
 @media (max-width: 600px) {
   .skills-cats { grid-template-columns: 1fr; }
 }
+
+/* ─── Decorative pixel sticker, bottom-right corner ─── */
+.skills-sticker {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 220px;
+  height: auto;
+  image-rendering: pixelated;
+  pointer-events: none;
+  z-index: 15;
+}
