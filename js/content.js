@@ -224,20 +224,119 @@ const PORTFOLIO = {
 
   /* ── Awards ──────────────────────────────────── */
   awards: [
-    { title: 'HACKATHON WINNER', org: 'SLIIT 2024',   icon: '🏆' },
-    { title: 'MERIT SCHOLARSHIP', org: 'UOM 2022',    icon: '⭐' },
-    { title: 'BEST PROJECT',      org: 'CS Dept 2023', icon: '🥇' },
-    { title: 'OPEN SOURCE AWARD', org: 'GitHub 2023', icon: '🐙' },
+    {
+      title: 'FINALIST — SLIoT CHALLENGE 2025',
+      org: 'National-level · Apr 2025',
+      desc: 'For SypherLink — an AI-driven smart railway ticketing system integrating RFID, GPS, a mobile app and IoT to automate fare computation, journey tracking and real-time notifications for Sri Lanka\'s railways. One of the top teams out of 200+.',
+      icon: '🏆',
+    },
+    {
+      title: '1ST RUNNER-UP — DEVTHON 2.0',
+      org: 'Rotaract Club UoM & SLTC · Mar 2025',
+      desc: 'For Influenz — an AI-powered influencer marketing platform: a smart SaaS product for campaign management and fraud prevention.',
+      icon: '🥈',
+    },
+    {
+      title: 'TOP 10 — SLIIT CODEFEST 2024',
+      org: 'DevQuest, SLIIT · Jan 2025',
+      desc: 'Team Scope b reached the Top 10 in DevQuest, a national hackathon solving real-world development challenges.',
+      icon: '🏅',
+    },
+    {
+      title: '1ST RUNNER-UP — MORA XTREME 9.0',
+      org: 'IEEE UoM · Dec 2024',
+      desc: 'Achieved 1st Runner-Up with Team Code01, competing in advanced problem-solving.',
+      icon: '🥈',
+    },
+    {
+      title: '1ST RUNNER-UP — CODERALLY 5.0',
+      org: 'IEEE IIT · Sep 2024',
+      desc: 'Secured 1st Runner-Up at a 24-hour hackathon for university students in Sri Lanka.',
+      icon: '🥈',
+    },
+    {
+      title: '1ST RUNNER-UP — J\'PURA XTREME 1.0',
+      org: 'IEEE UoSJP · Sep 2024',
+      desc: 'Earned 1st Runner-Up, working collaboratively in a high-pressure team coding event.',
+      icon: '🥈',
+    },
+    {
+      title: '6TH PLACE — MINIXTREME 2024',
+      org: 'UoM · Apr 2024',
+      desc: 'Secured 6th place out of 200+ participants in a 9-hour intensive hackathon.',
+      icon: '🎖️',
+    },
   ],
 
   /* ── Skills ──────────────────────────────────── */
   skills: [
-    { name: 'Python',     level: 90, icon: '🐍' },
-    { name: 'JavaScript', level: 85, icon: '⚡' },
-    { name: 'Java',       level: 75, icon: '☕' },
-    { name: 'React',      level: 80, icon: '⚛️' },
-    { name: 'SQL',        level: 70, icon: '🗄️' },
-    { name: 'Git',        level: 88, icon: '🌿' },
+    {
+      category: 'Programming Languages',
+      techs: [
+        { name: 'Python',     icon: 'devicon-python-plain colored' },
+        { name: 'C++',        icon: 'devicon-cplusplus-plain colored' },
+        { name: 'Java',       icon: 'devicon-java-plain colored' },
+        { name: 'JavaScript', icon: 'devicon-javascript-plain colored' },
+        { name: 'TypeScript', icon: 'devicon-typescript-plain colored' },
+        { name: 'Rust',       icon: 'devicon-rust-original colored' },
+      ],
+    },
+    {
+      category: 'Web & Frontend Development',
+      techs: [
+        { name: 'HTML',     icon: 'devicon-html5-plain colored' },
+        { name: 'CSS',      icon: 'devicon-css3-plain colored' },
+        { name: 'React',    icon: 'devicon-react-original colored' },
+        { name: 'Next.js',  icon: 'devicon-nextjs-plain' },
+        { name: 'Flutter',  icon: 'devicon-flutter-plain colored' },
+      ],
+    },
+    {
+      category: 'Backend Development',
+      techs: [
+        { name: 'Node.js',     icon: 'devicon-nodejs-plain colored' },
+        { name: 'Express.js',  icon: 'devicon-express-original' },
+        { name: 'Spring Boot', icon: 'devicon-spring-plain colored' },
+        { name: 'FastAPI',     icon: 'devicon-fastapi-plain colored' },
+      ],
+    },
+    {
+      category: 'Databases & Data Stores',
+      techs: [
+        { name: 'MySQL',      icon: 'devicon-mysql-plain colored' },
+        { name: 'PostgreSQL', icon: 'devicon-postgresql-plain colored' },
+        { name: 'Redis',      icon: 'devicon-redis-plain colored' },
+      ],
+    },
+    {
+      category: 'Cloud & DevOps',
+      techs: [
+        { name: 'Docker',                icon: 'devicon-docker-plain colored' },
+        { name: 'Kubernetes',            icon: 'devicon-kubernetes-plain colored' },
+        { name: 'Google Cloud Platform', icon: 'devicon-googlecloud-plain colored' },
+        { name: 'AWS',                   icon: 'devicon-amazonwebservices-plain-wordmark colored' },
+        { name: 'GitHub',                icon: 'devicon-github-original' },
+      ],
+    },
+    {
+      category: 'Testing & QA',
+      techs: [
+        { name: 'JUnit',    icon: 'devicon-junit-plain colored' },
+        { name: 'Postman',  icon: 'devicon-postman-plain colored' },
+        { name: 'Selenium', icon: 'devicon-selenium-original colored' },
+        { name: 'Cypress',  icon: 'devicon-cypressio-plain' },
+        { name: 'JMeter',   icon: 'devicon-jmeter-plain colored' },
+      ],
+    },
+    {
+      category: 'Development Tools & Platforms',
+      techs: [
+        { name: 'Visual Studio Code', icon: 'devicon-vscode-plain colored' },
+        { name: 'Google Colab',       emoji: '📓' },
+        { name: 'GitHub',             icon: 'devicon-github-original' },
+        { name: 'Swagger',            icon: 'devicon-swagger-plain colored' },
+      ],
+    },
   ],
 
   /* ── Contact ─────────────────────────────────── */

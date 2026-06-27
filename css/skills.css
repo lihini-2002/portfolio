@@ -1,0 +1,77 @@
+/* ═══════════════════════════════════════════════
+   SKILLS PAGE  —  category cards w/ tech logos
+   Each card = a category (translucent purple bg),
+   holding tech logo + name items.
+   Scoped under .skills-cats / .skill-cat / .skill-tech
+═══════════════════════════════════════════════ */
+
+.skills-cats {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  align-content: start;
+}
+
+/* ─── Category card ─── */
+.skill-cat {
+  background: rgba(124, 79, 160, 0.28);   /* translucent purple */
+  border: 3px solid var(--purple-deep);
+  border-radius: 16px;
+  box-shadow: 3px 3px 0 var(--pink-hot);
+  padding: 12px 12px 14px;
+  backdrop-filter: blur(2px);
+}
+
+.skill-cat__title {
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  line-height: 1.6;
+  color: var(--white);
+  background: var(--purple-deep);
+  border-radius: 999px;
+  padding: 6px 10px;
+  display: inline-block;
+  margin-bottom: 12px;
+  text-shadow: 1px 1px 0 var(--pink-hot);
+}
+
+/* ─── Tech grid inside a card ─── */
+.skill-cat__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  gap: 12px 6px;
+}
+
+.skill-tech {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+}
+
+.skill-tech__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  font-size: 28px;          /* devicon glyph + emoji size */
+  line-height: 1;
+}
+.skill-tech__logo i {
+  font-size: 28px;
+}
+
+.skill-tech__name {
+  font-family: var(--font-pixel);
+  font-size: 6px;
+  line-height: 1.5;
+  color: var(--purple-deep);
+  word-break: break-word;
+}
+
+/* ─── Mobile: cards stack to one column ─── */
+@media (max-width: 600px) {
+  .skills-cats { grid-template-columns: 1fr; }
+}
