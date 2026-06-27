@@ -340,10 +340,13 @@ const PORTFOLIO = {
   ],
 
   /* ── Contact ─────────────────────────────────── */
+  resumeUrl: 'https://drive.google.com/uc?export=download&id=1LNqUz-ViREkskQOykuq4dk_Cj-OUEuRG',
   contact: [
-    { label: 'Email',    icon: '📧', href: 'mailto:gayathri.22@cse.mrt.ac.lk' },
-    { label: 'GitHub',   icon: '🐙', href: 'https://github.com/' },
-    { label: 'LinkedIn', icon: '💼', href: 'https://linkedin.com/in/' },
-    { label: 'Twitter',  icon: '🐦', href: 'https://twitter.com/' },
+    { label: 'EMAIL',    sub: 'Drop me a mail', badge: 'FAST REPLY',
+      icon: 'images/contact/mail_envelope.svg',  href: 'mailto:gayathri.22@cse.mrt.ac.lk' },
+    { label: 'LINKEDIN', sub: "Let's connect?",  badge: 'PROFESSIONAL',
+      icon: 'images/contact/linkedin_badge.svg', href: 'https://linkedin.com/in/' },
+    { label: 'GITHUB',   sub: 'Check my code',   badge: 'OPEN SOURCE',
+      icon: 'images/contact/github_logo.gif',    href: 'https://github.com/' },
   ],
 };

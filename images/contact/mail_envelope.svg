@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" fill="none">
+
+<defs>
+  <style>
+    .ol { stroke: #5A2B82; stroke-width: 6; stroke-linejoin: miter; stroke-linecap: square; }
+    .thin { stroke: #5A2B82; stroke-width: 4; stroke-linejoin: miter; stroke-linecap: square; }
+    .txt { fill: #FFF9FF; font-family: Arial, Helvetica, sans-serif; font-weight: 700; }
+  </style>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+    <feDropShadow dx="0" dy="4" stdDeviation="2" flood-color="#d89adf" flood-opacity="0.5"/>
+  </filter>
+</defs>
+
+
+<g filter="url(#shadow)">
+  <rect class="ol" x="46" y="74" width="164" height="108" fill="#FFF9FF"/>
+  <path class="ol" d="M46 74L128 132L210 74" fill="#D8BCFF"/>
+  <path class="ol" d="M46 182L96 132" fill="none"/>
+  <path class="ol" d="M210 182L160 132" fill="none"/>
+  <rect class="ol" x="96" y="44" width="64" height="34" fill="#FF5FA8"/>
+  <path class="ol" d="M96 44L128 68L160 44" fill="#FF86C2"/>
+  <path class="ol" d="M110 56H146"/>
+  <path class="ol" d="M56 56l10 10M190 54l10 10M66 200l10-10M178 190l10 10" stroke="#FF5FA8"/>
+</g>
+
+</svg>

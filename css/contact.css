@@ -1,0 +1,360 @@
+/* ═══════════════════════════════════════════════
+   CONTACT SCREEN
+   Top: message form · Bottom: resume (L) + connect (R)
+═══════════════════════════════════════════════ */
+
+.contact-page {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ─── Floating decorations ──────────────────── */
+.contact-decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.contact-decor .cd { position: absolute; }
+.cd-cloud { animation: decor-drift 6s ease-in-out infinite; }
+.cd-heart { animation: decor-bob 3s ease-in-out infinite; }
+.cd-star  { animation: decor-twinkle 2.4s ease-in-out infinite; }
+
+.cd-cloud--1 { width: 46px; top: -10px;  left: -14px; }
+.cd-cloud--2 { width: 38px; top: 30%;    right: -18px; animation-delay: -2.5s; }
+.cd-cloud--3 { width: 34px; bottom: 6%;  left: -16px;  animation-delay: -1.5s; }
+.cd-cloud--4 { width: 42px; bottom: -8px; right: 12%;  animation-delay: -3.5s; }
+.cd-heart--1 { width: 20px; top: 12px;   right: 22%; animation-delay: -0.5s; }
+.cd-heart--2 { width: 14px; bottom: 30%; left: -10px; animation-delay: -1.5s; }
+.cd-heart--3 { width: 16px; top: 38%;    right: 6%;  animation-delay: -2.2s; }
+.cd-heart--4 { width: 12px; top: 60%;    left: 40%;  animation-delay: -0.9s; }
+.cd-star--1  { width: 16px; top: 46%;    left: 30%; }
+.cd-star--2  { width: 13px; bottom: 8%;  right: 26%; animation-delay: -0.8s; }
+.cd-star--3  { width: 18px; bottom: 18%; left: 8%;  animation-delay: -1.6s; }
+
+/* Keep cards above the decorations */
+.contact-form,
+.contact-box { position: relative; z-index: 1; }
+
+/* ─── Shared pixel-box card ─── */
+.contact-form,
+.contact-box {
+  background: var(--cream);
+  border: 4px solid var(--purple-deep);
+  box-shadow: 6px 6px 0 var(--pink-hot);
+  padding: 16px 18px;
+}
+
+/* ─── Top: form ─────────────────────────────── */
+.contact-form {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Soft pastel decorations behind the form fields */
+.contact-form-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.contact-form-bg .cfbg {
+  position: absolute;
+  opacity: 0.35;
+}
+.cfbg-cloud--tl { width: 64px; top: -8px;   right: 12px; }
+.cfbg-cloud--br { width: 54px; bottom: -14px; left: -10px; }
+.cfbg-cloud--tr { width: 44px; top: 6px;     left: 18%; }
+.cfbg-cloud--bl { width: 50px; bottom: 8%;   right: 14%; }
+.cfbg-cloud--mid { width: 38px; top: 50%;    left: 30%; }
+.cfbg-cloud--p1 { width: 40px; top: 22%;    right: 28%; }
+.cfbg-cloud--p2 { width: 46px; bottom: 20%; left: 6%; }
+.cfbg-cloud--p3 { width: 34px; top: 70%;    right: 8%; }
+.cfbg-sparkle   { width: 40px; top: 44%;    right: 6%; opacity: 0.5; }
+.cfbg-star      { width: 22px; bottom: 14%; right: 32%; }
+.cfbg-heart     { width: 26px; top: 18%;    left: 4%; }
+
+/* Keep form content above the decorations */
+.contact-form-title,
+.contact-fields,
+.contact-send {
+  position: relative;
+  z-index: 1;
+}
+
+.contact-form-title,
+.contact-box-title {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: var(--purple-deep);
+  margin-bottom: 14px;
+  letter-spacing: 1px;
+}
+
+.contact-form-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.contact-form-computer {
+  width: 30px;
+  height: 30px;
+  image-rendering: pixelated;
+}
+
+
+.contact-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.contact-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.contact-field--full {
+  grid-column: 1 / -1;
+}
+
+.contact-label {
+  font-family: var(--font-pixel);
+  font-size: 7px;
+  color: var(--purple-mid);
+  letter-spacing: 1px;
+}
+
+.contact-input {
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  color: var(--purple-deep);
+  background: var(--white);
+  border: 3px solid var(--purple-deep);
+  padding: 9px 10px;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.1s, box-shadow 0.1s;
+}
+.contact-input::placeholder {
+  color: var(--pink-light);
+}
+.contact-input:focus {
+  border-color: var(--pink-hot);
+  box-shadow: 3px 3px 0 var(--pink-light);
+}
+
+.contact-textarea {
+  resize: vertical;
+  min-height: 70px;
+  line-height: 1.6;
+}
+
+.contact-send {
+  display: inline-block;
+  margin-top: 14px;
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  color: var(--white);
+  background: var(--pink-hot);
+  border: 3px solid var(--purple-deep);
+  box-shadow: 4px 4px 0 var(--purple-deep);
+  padding: 11px 18px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: transform 0.05s, background 0.1s;
+}
+.contact-send:hover {
+  background: var(--pink-medium);
+}
+.contact-send:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--purple-deep);
+}
+
+/* ─── Bottom rows ───────────────────────────── */
+.contact-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-box-text {
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  line-height: 1.8;
+  color: var(--purple-mid);
+  margin-bottom: 16px;
+}
+
+/* Resume download row */
+.contact-resume {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.contact-resume-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.contact-sticker {
+  flex-shrink: 0;
+  width: 96px;
+  height: auto;
+  image-rendering: pixelated;
+}
+.contact-download {
+  margin-top: auto;
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  color: var(--purple-deep);
+  background: var(--lavender-light);
+  border: 3px solid var(--purple-deep);
+  box-shadow: 4px 4px 0 var(--pink-hot);
+  padding: 11px 16px;
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: transform 0.05s, background 0.1s, color 0.1s;
+}
+.contact-download:hover {
+  background: var(--pink-hot);
+  color: var(--white);
+}
+.contact-download:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--pink-hot);
+}
+
+/* ─── Ways to connect: road map ─────────────── */
+.contact-roadmap {
+  background: linear-gradient(135deg, #FFE3F1 0%, var(--lavender-light) 100%);
+  padding-bottom: 22px;
+}
+
+.rm-header {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: var(--white);
+  background: var(--pink-hot);
+  border: 3px solid var(--purple-deep);
+  box-shadow: 3px 3px 0 var(--purple-deep);
+  padding: 9px 12px;
+  margin-bottom: 26px;
+  letter-spacing: 1px;
+}
+
+.rm-track {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rm-sign {
+  flex-shrink: 0;
+  width: 66px;
+  height: auto;
+  image-rendering: pixelated;
+}
+
+/* Dancing sticker just before the dotted path begins */
+.rm-sticker {
+  flex-shrink: 0;
+  width: 60px;
+  height: auto;
+  image-rendering: pixelated;
+  margin-right: -44px;   /* nudge it up against where the line starts */
+  position: relative;
+  z-index: 1;
+}
+
+/* Stations + the dotted path behind them */
+.rm-stations {
+  position: relative;
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+/* Curvy dotted path weaving between the markers */
+.rm-path {
+  position: absolute;
+  top: 8px;             /* drift through the icon markers */
+  left: 2%;
+  right: 2%;
+  width: 96%;
+  height: 44px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.rm-station {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  padding: 0 6px;
+  transition: transform 0.1s;
+}
+.rm-station:hover {
+  transform: translateY(-4px);
+}
+
+.rm-marker {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+  border: 3px solid var(--purple-deep);
+  box-shadow: 3px 3px 0 var(--pink-medium);
+}
+.rm-marker img {
+  width: 46px;
+  height: 46px;
+  image-rendering: pixelated;
+}
+
+.rm-title {
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  color: var(--purple-deep);
+  letter-spacing: 1px;
+  margin-top: 2px;
+}
+.rm-sub {
+  font-family: var(--font-pixel);
+  font-size: 6px;
+  color: var(--purple-mid);
+}
+
+/* ─── Narrow viewports: stack everything ─── */
+@media (max-width: 640px) {
+  .contact-fields {
+    grid-template-columns: 1fr;
+  }
+  .rm-track {
+    flex-direction: column;
+  }
+  .rm-stations {
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+  }
+  .rm-path {
+    display: none;
+  }
+  .contact-sticker--left {
+    display: none;
+  }
+  .contact-sticker {
+    width: 72px;
+  }
+}
